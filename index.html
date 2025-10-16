@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyro Visuals | Professional Gaming Video Editor</title>
+    <title>Zyro Visuals | Professional Roblox Video Editor</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
 
@@ -55,13 +55,13 @@
             position: fixed;
             width: 40px;
             height: 40px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.3), transparent);
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transition: all 0.3s ease-out;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.25);
         }
 
         .cursor.active {
@@ -74,10 +74,10 @@
         .cursor-follower.active {
             width: 60px;
             height: 60px;
-            background: radial-gradient(circle, rgba(180, 124, 255, 0.4), transparent);
+            background: radial-gradient(circle, rgba(180, 124, 255, 0.2), transparent);
         }
 
-        a, button, .portfolio-item, .social-card, .feature-card, .testimonial-card {
+        a, button, .portfolio-video, .social-card, .feature-card, .testimonial-card {
             cursor: none;
         }
 
@@ -90,16 +90,16 @@
             background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan), var(--neon-pink));
             z-index: 1001;
             transition: width 0.1s ease-out;
-            box-shadow: 0 0 25px rgba(0, 217, 255, 0.9), 0 0 50px rgba(180, 124, 255, 0.6);
+            box-shadow: 0 0 12px rgba(0, 217, 255, 0.45), 0 0 25px rgba(180, 124, 255, 0.3);
             animation: progressGlow 2s ease-in-out infinite;
         }
 
         @keyframes progressGlow {
             0%, 100% { 
-                box-shadow: 0 0 25px rgba(0, 217, 255, 0.9), 0 0 50px rgba(180, 124, 255, 0.6);
+                box-shadow: 0 0 12px rgba(0, 217, 255, 0.45), 0 0 25px rgba(180, 124, 255, 0.3);
             }
             50% { 
-                box-shadow: 0 0 35px rgba(0, 217, 255, 1), 0 0 70px rgba(180, 124, 255, 0.8);
+                box-shadow: 0 0 17px rgba(0, 217, 255, 0.5), 0 0 35px rgba(180, 124, 255, 0.4);
             }
         }
 
@@ -159,8 +159,8 @@
         }
 
         @keyframes logoGlow {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(180, 124, 255, 0.5)); }
-            50% { filter: drop-shadow(0 0 25px rgba(0, 217, 255, 0.8)); }
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(180, 124, 255, 0.25)); }
+            50% { filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.4)); }
         }
 
         .logo:hover {
@@ -228,14 +228,14 @@
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
             transition: all 0.3s;
             animation: chatPulse 2s ease-in-out infinite;
         }
 
         @keyframes chatPulse {
-            0%, 100% { box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4); }
-            50% { box-shadow: 0 10px 50px rgba(0, 217, 255, 0.8); }
+            0%, 100% { box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2); }
+            50% { box-shadow: 0 10px 50px rgba(0, 217, 255, 0.4); }
         }
 
         .chat-button:hover {
@@ -357,7 +357,7 @@
 
         .chat-send:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.2);
         }
 
         .quick-replies {
@@ -524,18 +524,18 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
             color: white;
-            box-shadow: 0 10px 40px rgba(180, 124, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(180, 124, 255, 0.2);
             animation: btnPulse 2s ease-in-out infinite;
         }
 
         @keyframes btnPulse {
-            0%, 100% { box-shadow: 0 10px 40px rgba(180, 124, 255, 0.4); }
-            50% { box-shadow: 0 10px 50px rgba(180, 124, 255, 0.6); }
+            0%, 100% { box-shadow: 0 10px 40px rgba(180, 124, 255, 0.2); }
+            50% { box-shadow: 0 10px 50px rgba(180, 124, 255, 0.3); }
         }
 
         .btn-primary:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 50px rgba(180, 124, 255, 0.6);
+            box-shadow: 0 15px 50px rgba(180, 124, 255, 0.3);
         }
 
         .btn-secondary {
@@ -547,7 +547,7 @@
         .btn-secondary:hover {
             background: var(--neon-cyan);
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.4);
+            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.2);
             color: var(--dark-bg);
         }
 
@@ -626,7 +626,7 @@
         .stat-box:hover {
             transform: translateY(-10px);
             border-color: var(--neon-purple);
-            box-shadow: 0 20px 60px rgba(180, 124, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(180, 124, 255, 0.15);
         }
 
         .stat-number {
@@ -647,7 +647,7 @@
             letter-spacing: 1px;
         }
 
-        .portfolio {
+        .comparison {
             padding: 150px 80px;
             background: var(--dark-bg);
         }
@@ -677,96 +677,219 @@
             margin: 0 auto;
         }
 
+        .comparison-table {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            background: var(--dark-card);
+            border-radius: 30px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            background: linear-gradient(135deg, rgba(180, 124, 255, 0.1), rgba(0, 217, 255, 0.1));
+            border-bottom: 2px solid rgba(180, 124, 255, 0.3);
+        }
+
+        .comparison-header div {
+            padding: 30px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .comparison-header div:first-child {
+            text-align: left;
+            color: var(--text-secondary);
+        }
+
+        .comparison-header div:nth-child(2) {
+            color: var(--text-primary);
+            border-left: 1px solid rgba(180, 124, 255, 0.2);
+            border-right: 1px solid rgba(180, 124, 255, 0.2);
+        }
+
+        .comparison-header div:last-child {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid rgba(180, 124, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .comparison-row:hover {
+            background: rgba(180, 124, 255, 0.05);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-row div {
+            padding: 25px 30px;
+            font-size: 1.05rem;
+        }
+
+        .comparison-row div:first-child {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .comparison-row div:nth-child(2) {
+            color: var(--text-secondary);
+            border-left: 1px solid rgba(180, 124, 255, 0.1);
+            border-right: 1px solid rgba(180, 124, 255, 0.1);
+        }
+
+        .comparison-row div:last-child {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+
+        .comparison-closing {
+            max-width: 900px;
+            margin: 60px auto 0;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(180, 124, 255, 0.05), rgba(0, 217, 255, 0.05));
+            border-radius: 30px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+        }
+
+        .comparison-closing h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .comparison-closing p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .comparison-closing .highlight {
+            color: var(--neon-cyan);
+            font-weight: 700;
+        }
+
+        .portfolio {
+            padding: 150px 80px;
+            background: var(--dark-bg);
+        }
+
         .portfolio-grid {
             max-width: 1600px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
         }
 
-        .portfolio-item {
+        .portfolio-row {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .portfolio-video {
             position: relative;
             border-radius: 30px;
             overflow: hidden;
             aspect-ratio: 16/9;
-            cursor: pointer;
-            transition: all 0.5s;
             border: 2px solid rgba(180, 124, 255, 0.2);
-            text-decoration: none;
+            transition: all 0.5s;
         }
 
-        .portfolio-item:hover {
-            transform: scale(1.03);
+        .portfolio-video:hover {
+            transform: scale(1.02);
             border-color: var(--neon-cyan);
-            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.4);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.2);
         }
 
-        .portfolio-img {
+        .portfolio-video iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+            border: none;
         }
 
-        .portfolio-item:hover .portfolio-img {
-            transform: scale(1.1);
+        .portfolio-review {
+            background: var(--dark-card);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            position: relative;
         }
 
-        .portfolio-overlay {
+        .portfolio-review::before {
+            content: '"';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(180, 124, 255, 0.95), rgba(0, 217, 255, 0.85));
+            top: 10px;
+            left: 20px;
+            font-size: 6rem;
+            color: rgba(180, 124, 255, 0.2);
+            font-family: 'Georgia', serif;
+            line-height: 1;
+        }
+
+        .review-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .review-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .review-author-info {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.5s;
-            padding: 40px;
-        }
-
-        .portfolio-item:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+            font-size: 1.2rem;
             font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            color: white;
+            flex-shrink: 0;
         }
 
-        .portfolio-category {
+        .review-author-details h4 {
             font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.9;
-            margin-bottom: 15px;
-            color: white;
+            margin-bottom: 5px;
+            color: var(--text-primary);
         }
 
-        .view-btn {
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid white;
-            border-radius: 20px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
+        .review-author-details p {
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
 
-        .view-btn:hover {
-            background: white;
-            color: var(--dark-bg);
-            transform: scale(1.05);
+        .review-rating {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            letter-spacing: 2px;
         }
 
         .why-choose {
@@ -812,13 +935,13 @@
         .feature-card:hover {
             transform: translateY(-15px);
             border-color: var(--neon-purple);
-            box-shadow: 0 25px 70px rgba(180, 124, 255, 0.4);
+            box-shadow: 0 25px 70px rgba(180, 124, 255, 0.2);
         }
 
         .feature-icon {
             font-size: 4rem;
             margin-bottom: 30px;
-            filter: drop-shadow(0 0 20px rgba(180, 124, 255, 0.6));
+            filter: drop-shadow(0 0 10px rgba(180, 124, 255, 0.3));
             transition: transform 0.3s;
         }
 
@@ -875,7 +998,7 @@
         .testimonial-card:hover {
             transform: translateY(-10px);
             border-color: var(--neon-cyan);
-            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.3);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.15);
         }
 
         .testimonial-text {
@@ -984,14 +1107,14 @@
         .social-card:hover {
             transform: translateY(-15px);
             border-color: var(--neon-cyan);
-            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.5);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.25);
             background: linear-gradient(135deg, rgba(180, 124, 255, 0.1), rgba(0, 217, 255, 0.1));
         }
 
         .social-icon {
             font-size: 4rem;
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.6));
+            filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.3));
             transition: transform 0.3s;
         }
 
@@ -1033,7 +1156,7 @@
                 gap: 60px;
             }
 
-            .portfolio-grid {
+            .portfolio-row {
                 grid-template-columns: 1fr;
             }
 
@@ -1041,6 +1164,19 @@
             .testimonials-container,
             .social-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-header div:nth-child(2),
+            .comparison-row div:nth-child(2) {
+                border-left: none;
+                border-right: none;
+                border-top: 1px solid rgba(180, 124, 255, 0.2);
+                border-bottom: 1px solid rgba(180, 124, 255, 0.2);
             }
         }
 
@@ -1077,7 +1213,8 @@
             .portfolio,
             .why-choose,
             .feedback,
-            .contact {
+            .contact,
+            .comparison {
                 padding: 80px 30px;
             }
 
@@ -1101,6 +1238,7 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#intro">About</a></li>
+            <li><a href="#comparison">Why Agency</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#why">Why Us</a></li>
             <li><a href="#feedback">Feedback</a></li>
@@ -1139,7 +1277,7 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">Zyro Visuals</h1>
-            <p class="hero-subtitle">Transforming Raw Gameplay Into Viral Masterpieces</p>
+            <p class="hero-subtitle">From blocks to bangers — that's Zyro style.</p>
             <div class="hero-cta">
                 <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
                 <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Hire Me</button>
@@ -1150,86 +1288,232 @@
     <section class="intro" id="intro">
         <div class="intro-container">
             <div class="intro-text">
-                <h2>Professional Gaming Video Editor</h2>
-                <p>With over <span class="intro-highlight">5+ years</span> of experience crafting high-octane montages and cinematic content for top-tier gaming channels, esports teams, and content creators worldwide.</p>
-                <p>I specialize in turning raw gameplay into <span class="intro-highlight">viral sensations</span> that captivate audiences and skyrocket engagement. Every frame is meticulously edited with cutting-edge VFX, motion graphics, and color grading.</p>
-                <p>From intense FPS highlights to narrative-driven content, I bring your gaming vision to life with Hollywood-level production quality.</p>
+                <h2>Professional Roblox Video Editor</h2>
+                <p>Hello! I hope you're doing great.</p>
+                <p>My name is <span class="intro-highlight">Anshul Kurmi</span>, and I'm from India. I run <span class="intro-highlight">Zyro Visuals</span>, a creative video editing agency with over 1 year of experience in delivering professional content and a team of skilled editors with 3+ years of expertise.</p>
+                <p>We specialize in editing <span class="intro-highlight">Roblox videos</span>, turning raw gameplay into cinematic, story-driven edits that grab attention and keep viewers watching till the end. Our editors understand Roblox deeply — from camera angles to pacing and storytelling — which helps us craft edits that feel dynamic, engaging, and built to go viral.</p>
+                <p>At Zyro Visuals, we believe in quality, speed, and client satisfaction. We never stop refining a project until our clients are 100% happy. Every edit is handled with passion, precision, and teamwork — ensuring your content not only looks professional but truly stands out in the crowd.</p>
             </div>
             <div class="intro-stats">
                 <div class="stat-box">
-                    <div class="stat-number">300+</div>
+                    <div class="stat-number">250+</div>
                     <div class="stat-label">Projects Completed</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">300+</div>
+                    <div class="stat-number">6+</div>
                     <div class="stat-label">Happy Clients</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">20M+</div>
+                    <div class="stat-number">6M+</div>
                     <div class="stat-label">Total Views</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">98%</div>
+                    <div class="stat-number">95%</div>
                     <div class="stat-label">Client Satisfaction</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="comparison" id="comparison">
+        <div class="section-header">
+            <h2 class="section-title">Freelancer vs Agency — The Real Difference</h2>
+            <p class="section-subtitle">See why choosing Zyro Visuals means choosing reliability and quality</p>
+        </div>
+        
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div></div>
+                <div>Freelancer</div>
+                <div>Zyro Visuals (Agency)</div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Team Power</div>
+                <div>Works alone — if stuck, work stops.</div>
+                <div>Full team support — work never stops.</div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Delivery Time</div>
+                <div>Delays if unavailable.</div>
+                <div>Always on time — seamless team workflow.</div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Quality Check</div>
+                <div>Single vision, no backup review.</div>
+                <div>Multiple editors ensure polished perfection.</div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Reliability</div>
+                <div>One issue = full delay.</div>
+                <div>Instant handoff = zero downtime.</div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Client Support</div>
+                <div>Limited response time.</div>
+                <div>Dedicated communication and 24/7 support.</div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Revisions</div>
+                <div>Extra cost for more edits.</div>
+                <div>Unlimited revisions until you're satisfied.</div>
+            </div>
+        </div>
+        
+        <div class="comparison-closing">
+            <h3>💬 Short Closing Line</h3>
+            <p>With <span class="highlight">Zyro Visuals</span>, you don't hire just one editor — you hire a <span class="highlight">team that never lets your content slow down.</span></p>
+        </div>
+    </section>
+
     <section class="portfolio" id="portfolio">
         <div class="section-header">
-            <h2 class="section-title">Work & Portfolio</h2>
-            <p class="section-subtitle">Explore my latest cinematic edits and gaming montages crafted for top creators and esports organizations</p>
+            <h2 class="section-title">See How I Turn Roblox Clips Into Stunning Edits</h2>
+            <p class="section-subtitle">Check out some of my best work — each edit crafted with passion and precision</p>
         </div>
         <div class="portfolio-grid">
-            <a href="https://www.youtube.com/watch?v=frgVAY6kWJA" target="_blank" class="portfolio-item">
-                <img src="waffy.jpg" alt="Valorant" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Waffy</h3>
-                    <p class="portfolio-category">Zyro Visuals</p>
-                    <button class="view-btn">Watch Now</button>
+            <div class="portfolio-row">
+                <div class="portfolio-video">
+                    <iframe 
+                        src="https://www.youtube.com/embed/frgVAY6kWJA" 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
                 </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=sdHAfffZzsw" target="_blank" class="portfolio-item">
-                <img src="snappy.jpg" alt="Apex" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">SnappyBloxx</h3>
-                    <p class="portfolio-category">Zyro Visuals</p>
-                    <button class="view-btn">Watch Now</button>
+                <div class="portfolio-review">
+                    <div class="review-content">
+                        <p class="review-text">This looks amazing bro thank you 🙏</p>
+                        <div class="review-author-info">
+                            <div class="review-avatar">RP</div>
+                            <div class="review-author-details">
+                                <h4>Ryan Pictures</h4>
+                                <p>364,000 Subscribers</p>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
                 </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=X2-vch4Ae_8" target="_blank" class="portfolio-item">
-                <img src="ayeyahzee.jpg" alt="CS2" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">ayeyahzee</h3>
-                    <p class="portfolio-category">Zyro Visuals</p>
-                    <button class="view-btn">Watch Now</button>
+            </div>
+
+            <div class="portfolio-row">
+                <div class="portfolio-video">
+                    <iframe 
+                        src="https://www.youtube.com/embed/sdHAfffZzsw" 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
                 </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=RACl1AG_rU0" target="_blank" class="portfolio-item">
-                <img src="Valekis.jpg" alt="Fortnite" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Valekis</h3>
-                    <p class="portfolio-category">Zyro Visuals</p>
-                    <button class="view-btn">Watch Now</button>
+                <div class="portfolio-review">
+                    <div class="review-content">
+                        <p class="review-text">I love your editing style, bro so good</p>
+                        <div class="review-author-info">
+                            <div class="review-avatar">BC</div>
+                            <div class="review-author-details">
+                                <h4>Big Craig</h4>
+                                <p>204,000 Subscribers</p>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
                 </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=R5LCmnSLwwU" target="_blank" class="portfolio-item">
-                <img src="Daniela.jpg" alt="Tournament" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Daniela</h3>
-                    <p class="portfolio-category">Zyro Visuals</p>
-                    <button class="view-btn">Watch Now</button>
+            </div>
+
+            <div class="portfolio-row">
+                <div class="portfolio-video">
+                    <iframe 
+                        src="https://www.youtube.com/embed/X2-vch4Ae_8" 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
                 </div>
-            </a>
-            <a href="https://www.youtube.com/watch?v=sdHAfffZzsw" target="_blank" class="portfolio-item">
-                <img src="JustmaikoGaming.jpg" alt="Stream" class="portfolio-img">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">JustmaikoGaming</h3>
-                    <p class="portfolio-category">Zyro Visuals</p>
-                    <button class="view-btn">Watch Now</button>
+                <div class="portfolio-review">
+                    <div class="review-content">
+                        <p class="review-text">Absolutely incredible work! The editing took my content to a whole new level.</p>
+                        <div class="review-author-info">
+                            <div class="review-avatar">AY</div>
+                            <div class="review-author-details">
+                                <h4>ayeyahzee</h4>
+                                <p>Content Creator</p>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
                 </div>
-            </a>
+            </div>
+
+            <div class="portfolio-row">
+                <div class="portfolio-video">
+                    <iframe 
+                        src="https://www.youtube.com/embed/RACl1AG_rU0" 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                </div>
+                <div class="portfolio-review">
+                    <div class="review-content">
+                        <p class="review-text">Fast turnaround and stunning quality. Exactly what I needed!</p>
+                        <div class="review-author-info">
+                            <div class="review-avatar">VK</div>
+                            <div class="review-author-details">
+                                <h4>Valekis</h4>
+                                <p>Gaming YouTuber</p>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-row">
+                <div class="portfolio-video">
+                    <iframe 
+                        src="https://www.youtube.com/embed/R5LCmnSLwwU" 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                </div>
+                <div class="portfolio-review">
+                    <div class="review-content">
+                        <p class="review-text">Professional and creative! My viewers loved the new editing style.</p>
+                        <div class="review-author-info">
+                            <div class="review-avatar">DN</div>
+                            <div class="review-author-details">
+                                <h4>Daniela</h4>
+                                <p>Roblox Creator</p>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-row">
+                <div class="portfolio-video">
+                    <iframe 
+                        src="https://www.youtube.com/embed/sdHAfffZzsw" 
+                        allowfullscreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                </div>
+                <div class="portfolio-review">
+                    <div class="review-content">
+                        <p class="review-text">Best editor I've worked with! The attention to detail is unmatched.</p>
+                        <div class="review-author-info">
+                            <div class="review-avatar">JM</div>
+                            <div class="review-author-details">
+                                <h4>JustmaikoGaming</h4>
+                                <p>Gaming Channel</p>
+                            </div>
+                        </div>
+                        <div class="review-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1347,56 +1631,39 @@
         </div>
     </section>
 
-<section class="contact" id="contact">
-  <div class="section-header">
-    <h2 class="section-title">Let's Create Together</h2>
-    <p class="section-subtitle">
-      Ready to take your content to the next level? Reach out through your preferred platform!
-    </p>
-  </div>
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Let's Create Together</h2>
+            <p class="section-subtitle">Ready to take your content to the next level? Reach out through your preferred platform!</p>
+        </div>
 
-  <div class="contact-container">
-    <p class="contact-intro">
-      Whether you need a quick montage or a full content package, I'm here to bring your vision to life. Let's collaborate and make something amazing!
-    </p>
+        <div class="contact-container">
+            <p class="contact-intro">Whether you need a quick montage or a full content package, I'm here to bring your vision to life. Let's collaborate and make something amazing!</p>
 
-    <div class="social-grid">
-      <!-- Discord -->
-      <a href="https://discord.com/users/863354644926693396" class="social-card" target="_blank">
-        <div class="social-icon">💬</div>
-        <h3>Discord</h3>
-        <p>@ZyroVisual</p>
-      </a>
+            <div class="social-grid">
+                <a href="https://discord.com/users/863354644926693396" class="social-card" target="_blank">
+                    <div class="social-icon">💬</div>
+                    <h3>Discord</h3>
+                    <p>@ZyroVisual</p>
+                </a>
 
-      <!-- Gmail -->
-      <a href="mailto:zyrovisual158@gmail.com" class="social-card">
-        <div class="social-icon">📧</div>
-        <h3>Email</h3>
-        <p>zyrovisual158@gmail.com</p>
-      </a>
+                <a href="mailto:zyrovisual158@gmail.com" class="social-card">
+                    <div class="social-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>zyrovisual158@gmail.com</p>
+                </a>
 
-      <!-- X / Twitter -->
-      <a href="https://x.com/ZyroVisual" class="social-card" target="_blank">
-        <div class="social-icon">🐦</div>
-        <h3>X (Twitter)</h3>
-        <p>@ZyroVisual</p>
-      </a>
-
-      <!-- WhatsApp (optional — add your number if you want) -->
-      <!--
-      <a href="https://wa.me/1234567890" class="social-card" target="_blank">
-        <div class="social-icon">📱</div>
-        <h3>WhatsApp</h3>
-        <p>+1 (234) 567-8900</p>
-      </a>
-      -->
-    </div>
-  </div>
-</section>
-
+                <a href="https://x.com/ZyroVisual" class="social-card" target="_blank">
+                    <div class="social-icon">🐦</div>
+                    <h3>X (Twitter)</h3>
+                    <p>@ZyroVisual</p>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2025 Zyro Visuals. All Rights Reserved. | Crafted with passion for gaming excellence.</p>
+        <p>&copy; 2025 Zyro Visuals - Designed by <a href="https://www.instagram.com/a2z__clicks" target="_blank">a2z__clicks</a></p>
     </footer>
 
     <script>
@@ -1424,7 +1691,7 @@
         }
         animateCursor();
 
-        const hoverElements = document.querySelectorAll('a, button, .portfolio-item, .social-card, .feature-card, .testimonial-card, .stat-box, .chat-button, .quick-reply');
+        const hoverElements = document.querySelectorAll('a, button, .portfolio-video, .social-card, .feature-card, .testimonial-card, .stat-box, .chat-button, .quick-reply');
         
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -1505,10 +1772,10 @@
 
         function getResponse(msg) {
             const responses = {
-                'portfolio': 'Check out my portfolio section above! I have 6 amazing projects showcasing my work.',
-                'services': 'I offer professional gaming video editing with 24-48 hour turnaround, Hollywood-level VFX, and unlimited revisions!',
-                'hire': 'Great! You can reach me via Discord, Email, or WhatsApp in the contact section. Let\'s create something amazing!',
-                'default': 'Thanks for your interest! Feel free to explore the site or reach out through our contact methods.'
+                'portfolio': 'Check out my portfolio section above! I have 6 amazing projects showcasing my work with real client reviews.',
+                'services': 'I offer professional Roblox video editing with 24-48 hour turnaround, cinematic quality, and unlimited revisions!',
+                'hire': 'Great! You can reach me via Discord (@ZyroVisual), Email (zyrovisual158@gmail.com), or X/Twitter (@ZyroVisual). Let\'s create something amazing!',
+                'default': 'Thanks for your interest! Feel free to explore the site or reach out through our contact methods in the contact section.'
             };
 
             const lowerMsg = msg.toLowerCase();
@@ -1584,7 +1851,7 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.feature-card, .testimonial-card, .portfolio-item').forEach(el => {
+        document.querySelectorAll('.feature-card, .testimonial-card, .portfolio-row, .comparison-row').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease-out';
