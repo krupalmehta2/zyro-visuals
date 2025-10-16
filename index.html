@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyro Visuals | Professional Gaming Video Editor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-purple: #b47cff;
+            --neon-cyan: #00d9ff;
+            --neon-pink: #ff006e;
+            --gold: #ffd700;
+            --dark-bg: #050510;
+            --dark-card: #0d0d1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8c8;
+            --accent: #00d9ff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            cursor: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease-out;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.3), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease-out;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+
+        .cursor.active {
+            width: 50px;
+            height: 50px;
+            background: rgba(180, 124, 255, 0.2);
+            border-color: var(--neon-purple);
+        }
+
+        .cursor-follower.active {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(180, 124, 255, 0.4), transparent);
+        }
+
+        a, button, .portfolio-item, .social-card, .feature-card, .testimonial-card {
+            cursor: none;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan), var(--neon-pink));
+            z-index: 1001;
+            transition: width 0.1s ease-out;
+            box-shadow: 0 0 25px rgba(0, 217, 255, 0.9), 0 0 50px rgba(180, 124, 255, 0.6);
+            animation: progressGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { 
+                box-shadow: 0 0 25px rgba(0, 217, 255, 0.9), 0 0 50px rgba(180, 124, 255, 0.6);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(0, 217, 255, 1), 0 0 70px rgba(180, 124, 255, 0.8);
+            }
+        }
+
+        .floating-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: float 15s linear infinite;
+            opacity: 0.3;
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        .header-nav {
+            position: fixed;
+            top: 4px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 25px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 16, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(180, 124, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .header-nav.scrolled {
+            padding: 15px 80px;
+            background: rgba(5, 5, 16, 0.95);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            cursor: pointer;
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(180, 124, 255, 0.5)); }
+            50% { filter: drop-shadow(0 0 25px rgba(0, 217, 255, 0.8)); }
+        }
+
+        .logo:hover {
+            animation: logoShake 0.5s ease-in-out;
+        }
+
+        @keyframes logoShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-2deg); }
+            75% { transform: translateX(5px) rotate(2deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            border: 2px solid var(--neon-cyan);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+            transition: all 0.3s;
+            animation: chatPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes chatPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4); }
+            50% { box-shadow: 0 10px 50px rgba(0, 217, 255, 0.8); }
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            max-height: 500px;
+            background: var(--dark-card);
+            border-radius: 20px;
+            border: 1px solid rgba(180, 124, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            padding: 20px;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 300px;
+        }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 90%;
+            animation: messageSlide 0.3s ease-out;
+            font-size: 0.95rem;
+        }
+
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            background: rgba(180, 124, 255, 0.2);
+            border-left: 3px solid var(--neon-purple);
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(180, 124, 255, 0.1));
+            border-left: 3px solid var(--neon-cyan);
+            align-self: flex-end;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid rgba(180, 124, 255, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            border-radius: 20px;
+            padding: 10px 15px;
+            color: white;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            background: rgba(0, 217, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .chat-send:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0 15px 15px;
+            border-top: 1px solid rgba(180, 124, 255, 0.1);
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .quick-reply {
+            padding: 10px 15px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 20px;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .quick-reply:hover {
+            background: rgba(0, 217, 255, 0.2);
+            border-color: var(--neon-cyan);
+            transform: translateX(5px);
+        }
+
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .hero-video-container iframe {
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(180, 124, 255, 0.3), rgba(0, 217, 255, 0.2));
+            z-index: 1;
+        }
+
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 16, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 1200px;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeInScale 1.2s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 25px;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 20px 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before, .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before, .btn-secondary:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            color: white;
+            box-shadow: 0 10px 40px rgba(180, 124, 255, 0.4);
+            animation: btnPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes btnPulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(180, 124, 255, 0.4); }
+            50% { box-shadow: 0 10px 50px rgba(180, 124, 255, 0.6); }
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(180, 124, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--neon-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neon-cyan);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.4);
+            color: var(--dark-bg);
+        }
+
+        .intro {
+            padding: 150px 80px;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+        }
+
+        .intro-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-text p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+
+        .intro-highlight {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+
+        .intro-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .stat-box {
+            background: var(--dark-bg);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(180, 124, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .stat-box:hover::before {
+            opacity: 1;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 20px 60px rgba(180, 124, 255, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portfolio {
+            padding: 150px 80px;
+            background: var(--dark-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            transition: all 0.5s;
+            border: 2px solid rgba(180, 124, 255, 0.2);
+            text-decoration: none;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.4);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(180, 124, 255, 0.95), rgba(0, 217, 255, 0.85));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+            padding: 40px;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .portfolio-category {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .view-btn {
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid white;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .view-btn:hover {
+            background: white;
+            color: var(--dark-bg);
+            transform: scale(1.05);
+        }
+
+        .why-choose {
+            padding: 150px 80px;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: var(--dark-bg);
+            padding: 50px 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            text-align: center;
+            transition: all 0.5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(180, 124, 255, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 25px 70px rgba(180, 124, 255, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(180, 124, 255, 0.6));
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--neon-cyan);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .feedback {
+            padding: 150px 80px;
+            background: var(--dark-bg);
+        }
+
+        .testimonials-container {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--dark-card);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            transition: all 0.5s;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 8rem;
+            color: rgba(180, 124, 255, 0.2);
+            font-family: 'Georgia', serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.3);
+        }
+
+        .testimonial-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover .author-avatar {
+            transform: scale(1.1);
+        }
+
+        .author-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+        }
+
+        .author-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .rating {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        .contact {
+            padding: 150px 80px;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+        }
+
+        .contact-container {
+            max-width: 900px;
+            margin: 80px auto 0;
+            text-align: center;
+        }
+
+        .contact-intro {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            line-height: 1.8;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .social-card {
+            background: var(--dark-bg);
+            padding: 50px 40px;
+            border-radius: 30px;
+            border: 2px solid rgba(180, 124, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.5s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.15), transparent);
+            transition: left 0.7s;
+        }
+
+        .social-card:hover::before {
+            left: 100%;
+        }
+
+        .social-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.5);
+            background: linear-gradient(135deg, rgba(180, 124, 255, 0.1), rgba(0, 217, 255, 0.1));
+        }
+
+        .social-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.6));
+            transition: transform 0.3s;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        .social-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--neon-cyan);
+        }
+
+        .social-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        footer {
+            padding: 60px 80px;
+            background: var(--dark-bg);
+            border-top: 1px solid rgba(180, 124, 255, 0.2);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 1200px) {
+            .header-nav {
+                padding: 20px 40px;
+            }
+
+            .intro-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .testimonials-container,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor, .cursor-follower {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .intro,
+            .portfolio,
+            .why-choose,
+            .feedback,
+            .contact {
+                padding: 80px 30px;
+            }
+
+            .intro-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .chat-window {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="header-nav" id="navbar">
+        <div class="logo">Zyro Visuals</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#intro">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="chatbot-container">
+        <button class="chat-button" id="chatBtn">💬</button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">Zyro Assistant</div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">Hi! 👋 Welcome to Zyro Visuals. How can I help you today?</div>
+            </div>
+            <div class="quick-replies" id="quickReplies">
+                <div class="quick-reply" onclick="handleQuickReply('I want to see your portfolio')">Portfolio</div>
+                <div class="quick-reply" onclick="handleQuickReply('Tell me about your services')">Services</div>
+                <div class="quick-reply" onclick="handleQuickReply('How do I hire you?')">Hire You</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+                <button class="chat-send" id="chatSend">📤</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero" id="home">
+        <div class="hero-video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/5yx6BWlEVcY?autoplay=1&mute=1&loop=1&playlist=5yx6BWlEVcY&controls=0&showinfo=0&modestbranding=1&rel=0" 
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen
+            ></iframe>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Zyro Visuals</h1>
+            <p class="hero-subtitle">Transforming Raw Gameplay Into Viral Masterpieces</p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
+                <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Hire Me</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="intro" id="intro">
+        <div class="intro-container">
+            <div class="intro-text">
+                <h2>Professional Gaming Video Editor</h2>
+                <p>With over <span class="intro-highlight">5+ years</span> of experience crafting high-octane montages and cinematic content for top-tier gaming channels, esports teams, and content creators worldwide.</p>
+                <p>I specialize in turning raw gameplay into <span class="intro-highlight">viral sensations</span> that captivate audiences and skyrocket engagement. Every frame is meticulously edited with cutting-edge VFX, motion graphics, and color grading.</p>
+                <p>From intense FPS highlights to narrative-driven content, I bring your gaming vision to life with Hollywood-level production quality.</p>
+            </div>
+            <div class="intro-stats">
+                <div class="stat-box">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">300+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">20M+</div>
+                    <div class="stat-label">Total Views</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="section-header">
+            <h2 class="section-title">Work & Portfolio</h2>
+            <p class="section-subtitle">Explore my latest cinematic edits and gaming montages crafted for top creators and esports organizations</p>
+        </div>
+        <div class="portfolio-grid">
+            <a href="https://www.youtube.com/watch?v=frgVAY6kWJA" target="_blank" class="portfolio-item">
+                <img src="waffy.jpg" alt="Valorant" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Waffy</h3>
+                    <p class="portfolio-category">Zyro Visuals</p>
+                    <button class="view-btn">Watch Now</button>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=sdHAfffZzsw" target="_blank" class="portfolio-item">
+                <img src="snappy.jpg" alt="Apex" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">SnappyBloxx</h3>
+                    <p class="portfolio-category">Zyro Visuals</p>
+                    <button class="view-btn">Watch Now</button>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=X2-vch4Ae_8" target="_blank" class="portfolio-item">
+                <img src="ayeyahzee.jpg" alt="CS2" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">ayeyahzee</h3>
+                    <p class="portfolio-category">Zyro Visuals</p>
+                    <button class="view-btn">Watch Now</button>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=RACl1AG_rU0" target="_blank" class="portfolio-item">
+                <img src="valekis.jpg" alt="Fortnite" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Valekis</h3>
+                    <p class="portfolio-category">Zyro Visuals</p>
+                    <button class="view-btn">Watch Now</button>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=R5LCmnSLwwU" target="_blank" class="portfolio-item">
+                <img src="Daniela.jpg" alt="Tournament" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">Daniela</h3>
+                    <p class="portfolio-category">Zyro Visuals</p>
+                    <button class="view-btn">Watch Now</button>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=sdHAfffZzsw" target="_blank" class="portfolio-item">
+                <img src="JustmaikoGaming.jpg" alt="Stream" class="portfolio-img">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">JustmaikoGaming</h3>
+                    <p class="portfolio-category">Zyro Visuals</p>
+                    <button class="view-btn">Watch Now</button>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="why-choose" id="why">
+        <div class="section-header">
+            <h2 class="section-title">Why Choose Us</h2>
+            <p class="section-subtitle">Why top gaming creators and esports teams choose to work with me</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>24-48 hour turnaround time without compromising on quality. Perfect for content creators with tight schedules.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3>Cinematic Quality</h3>
+                <p>Hollywood-level editing with advanced VFX, color grading, and motion graphics that make your content stand out.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Viral Potential</h3>
+                <p>Edits optimized for maximum engagement and shareability across YouTube, TikTok, and Instagram.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3>Trend Mastery</h3>
+                <p>Stay ahead with the latest editing trends, effects, and styles that resonate with gaming audiences.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Premium Tools</h3>
+                <p>Using industry-standard software including After Effects, Premiere Pro, and DaVinci Resolve.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Unlimited Revisions</h3>
+                <p>Your satisfaction is guaranteed. I work with you until the edit perfectly matches your vision.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback" id="feedback">
+        <div class="section-header">
+            <h2 class="section-title">Client Feedback</h2>
+            <p class="section-subtitle">Hear what top gaming creators and esports teams say about working with me</p>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <p class="testimonial-text">The editing quality is absolutely insane! My channel grew from 50K to 500K subscribers in just 6 months. Every video feels like a blockbuster movie.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AK</div>
+                    <div class="author-info">
+                        <h4>Alex "Apex King" Rodriguez</h4>
+                        <p>YouTube Creator • 500K Subs</p>
+                    </div>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">Professional, fast, and incredibly talented. The tournament highlight reel got over 2 million views in the first week. Best investment we've made!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TG</div>
+                    <div class="author-info">
+                        <h4>Team Genesis Esports</h4>
+                        <p>Professional Esports Org</p>
+                    </div>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">The attention to detail is unmatched. Every transition, every effect, every frame is perfectly synchronized with the music. Pure artistry!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SP</div>
+                    <div class="author-info">
+                        <h4>Sarah "PixelPro" Martinez</h4>
+                        <p>Twitch Partner • 200K Followers</p>
+                    </div>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">I've worked with 10+ editors, and none come close to this level of quality. The cinematic feel is exactly what my brand needed. Highly recommend!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DJ</div>
+                    <div class="author-info">
+                        <h4>David "JukeBox" Chen</h4>
+                        <p>Content Creator • 1M Subs</p>
+                    </div>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">Fast turnaround, unlimited revisions, and stunning results. The montage went viral with 5M views. Worth every penny!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">VF</div>
+                    <div class="author-info">
+                        <h4>Vortex Gaming</h4>
+                        <p>Gaming Brand</p>
+                    </div>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">The edits transformed our content completely. Engagement is up 300%, and sponsors are lining up. This editor is a game-changer!</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">EL</div>
+                    <div class="author-info">
+                        <h4>Emma "Lightning" Foster</h4>
+                        <p>Pro Gamer • Valorant</p>
+                    </div>
+                </div>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+    </section>
+
+<section class="contact" id="contact">
+  <div class="section-header">
+    <h2 class="section-title">Let's Create Together</h2>
+    <p class="section-subtitle">
+      Ready to take your content to the next level? Reach out through your preferred platform!
+    </p>
+  </div>
+
+  <div class="contact-container">
+    <p class="contact-intro">
+      Whether you need a quick montage or a full content package, I'm here to bring your vision to life. Let's collaborate and make something amazing!
+    </p>
+
+    <div class="social-grid">
+      <!-- Discord -->
+      <a href="https://discord.com/users/863354644926693396" class="social-card" target="_blank">
+        <div class="social-icon">💬</div>
+        <h3>Discord</h3>
+        <p>@ZyroVisual</p>
+      </a>
+
+      <!-- Gmail -->
+      <a href="mailto:zyrovisual158@gmail.com" class="social-card">
+        <div class="social-icon">📧</div>
+        <h3>Email</h3>
+        <p>zyrovisual158@gmail.com</p>
+      </a>
+
+      <!-- X / Twitter -->
+      <a href="https://x.com/ZyroVisual" class="social-card" target="_blank">
+        <div class="social-icon">🐦</div>
+        <h3>X (Twitter)</h3>
+        <p>@ZyroVisual</p>
+      </a>
+
+      <!-- WhatsApp (optional — add your number if you want) -->
+      <!--
+      <a href="https://wa.me/1234567890" class="social-card" target="_blank">
+        <div class="social-icon">📱</div>
+        <h3>WhatsApp</h3>
+        <p>+1 (234) 567-8900</p>
+      </a>
+      -->
+    </div>
+  </div>
+</section>
+
+
+    <footer>
+        <p>&copy; 2025 Zyro Visuals. All Rights Reserved. | Crafted with passion for gaming excellence.</p>
+    </footer>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0, followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.3;
+            cursorY += (mouseY - cursorY) * 0.3;
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        const hoverElements = document.querySelectorAll('a, button, .portfolio-item, .social-card, .feature-card, .testimonial-card, .stat-box, .chat-button, .quick-reply');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+                cursorFollower.classList.add('active');
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+                cursorFollower.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '1';
+            cursorFollower.style.opacity = '1';
+        });
+
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const progressBar = document.getElementById('progressBar');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        const chatBtn = document.getElementById('chatBtn');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatMessages = document.getElementById('chatMessages');
+
+        chatBtn.addEventListener('click', () => {
+            chatWindow.classList.toggle('active');
+        });
+
+        chatSend.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user-message';
+            userMsg.textContent = message;
+            chatMessages.appendChild(userMsg);
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot-message';
+                botMsg.textContent = getResponse(message);
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 500);
+        }
+
+        function handleQuickReply(text) {
+            chatInput.value = text;
+            sendMessage();
+        }
+
+        function getResponse(msg) {
+            const responses = {
+                'portfolio': 'Check out my portfolio section above! I have 6 amazing projects showcasing my work.',
+                'services': 'I offer professional gaming video editing with 24-48 hour turnaround, Hollywood-level VFX, and unlimited revisions!',
+                'hire': 'Great! You can reach me via Discord, Email, or WhatsApp in the contact section. Let\'s create something amazing!',
+                'default': 'Thanks for your interest! Feel free to explore the site or reach out through our contact methods.'
+            };
+
+            const lowerMsg = msg.toLowerCase();
+            if (lowerMsg.includes('portfolio')) return responses.portfolio;
+            if (lowerMsg.includes('service')) return responses.services;
+            if (lowerMsg.includes('hire')) return responses.hire;
+            return responses.default;
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'floating-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        const observerOptions = { threshold: 0.5, rootMargin: '0px' };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const hasPlus = text.includes('+');
+                        const hasPercent = text.includes('%');
+                        const hasM = text.includes('M');
+                        const number = parseInt(text.replace(/[^0-9]/g, ''));
+                        
+                        let current = 0;
+                        const increment = number / 80;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= number) {
+                                stat.textContent = number + (hasM ? 'M' : '') + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
+                                clearInterval(timer);
+                            } else {
+                                stat.textContent = Math.floor(current) + (hasM ? 'M' : '') + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
+                            }
+                        }, 20);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.intro-stats');
+        if (statsSection) observer.observe(statsSection);
+
+        const fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.feature-card, .testimonial-card, .portfolio-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            fadeObserver.observe(el);
+        });
+
+        document.querySelectorAll('.feature-card, .testimonial-card, .social-card, .stat-box').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        window.addEventListener('load', function() {
+            document.querySelectorAll('img').forEach(img => {
+                img.style.animation = 'fadeIn 0.5s ease-out';
+            });
+        });
+    </script>
+</body>
+</html>
