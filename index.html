@@ -704,23 +704,26 @@
         </ul>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-video-container">
-            <video autoplay muted loop playsinline>
-                <source src="website intro.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+<section class="hero" id="home">
+    <div class="hero-video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/DwBQV77HpV0?autoplay=1&mute=1&loop=1&playlist=DwBQV77HpV0&controls=0&showinfo=0&modestbranding=1"
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen>
+        </iframe>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Zyro Visuals</h1>
+        <p class="hero-subtitle">I grab attention — you want to do the same?</p>
+        <div class="hero-cta">
+            <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
+            <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Hire Me</button>
         </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Zyro Visuals</h1>
-            <p class="hero-subtitle">I grab attention — you want to do the same?</p>
-            <div class="hero-cta">
-                <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
-                <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Hire Me</button>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
+
 
     <section class="intro" id="intro">
         <div class="intro-container">
