@@ -6,12 +6,9 @@
     <title>Zyro Visuals | Professional Roblox Video Editor</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.cdnfonts.com/css/coolvetica');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --neon-purple: #b47cff;
@@ -34,9 +31,7 @@
             cursor: none;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         .cursor {
             position: fixed;
@@ -67,18 +62,14 @@
         .cursor.active {
             width: 50px;
             height: 50px;
-            background: rgba(180, 124, 255, 0.2);
-            border-color: var(--neon-purple);
+            background: rgba(0, 217, 255, 0.2);
+            border-color: var(--neon-cyan);
         }
 
         .cursor-follower.active {
             width: 60px;
             height: 60px;
-            background: radial-gradient(circle, rgba(180, 124, 255, 0.2), transparent);
-        }
-
-        a, button, .portfolio-video, .social-card, .feature-card, .testimonial-card {
-            cursor: none;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2), transparent);
         }
 
         .progress-bar {
@@ -95,95 +86,83 @@
         }
 
         @keyframes progressGlow {
-            0%, 100% { 
-                box-shadow: 0 0 12px rgba(0, 217, 255, 0.45), 0 0 25px rgba(180, 124, 255, 0.3);
-            }
-            50% { 
-                box-shadow: 0 0 17px rgba(0, 217, 255, 0.5), 0 0 35px rgba(180, 124, 255, 0.4);
-            }
-        }
-
-        .floating-particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--neon-purple);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            animation: float 15s linear infinite;
-            opacity: 0.3;
-            box-shadow: 0 0 10px var(--neon-purple);
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+            0%, 100% { box-shadow: 0 0 12px rgba(0, 217, 255, 0.45), 0 0 25px rgba(180, 124, 255, 0.3); }
+            50% { box-shadow: 0 0 17px rgba(0, 217, 255, 0.5), 0 0 35px rgba(180, 124, 255, 0.4); }
         }
 
         .header-nav {
             position: fixed;
-            top: 4px;
-            left: 0;
-            right: 0;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
-            padding: 25px 80px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 5, 16, 0.7);
+            background: rgba(13, 13, 26, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(180, 124, 255, 0.1);
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            border-radius: 50px;
             transition: all 0.3s;
+            max-width: 1200px;
+            width: 90%;
         }
 
         .header-nav.scrolled {
-            padding: 15px 80px;
-            background: rgba(5, 5, 16, 0.95);
+            padding: 15px 35px;
+            background: rgba(13, 13, 26, 0.95);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(180, 124, 255, 0.4));
+            transition: filter 0.3s;
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 8px rgba(180, 124, 255, 0.3)); }
+            50% { filter: drop-shadow(0 0 15px rgba(0, 217, 255, 0.5)); }
+        }
+
+        .logo-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 900;
             background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 2px;
-            cursor: pointer;
-            animation: logoGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes logoGlow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(180, 124, 255, 0.25)); }
-            50% { filter: drop-shadow(0 0 12px rgba(0, 217, 255, 0.4)); }
-        }
-
-        .logo:hover {
-            animation: logoShake 0.5s ease-in-out;
-        }
-
-        @keyframes logoShake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px) rotate(-2deg); }
-            75% { transform: translateX(5px) rotate(2deg); }
         }
 
         .nav-links {
             display: flex;
-            gap: 50px;
+            gap: 40px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s;
@@ -201,191 +180,37 @@
             transition: width 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--accent);
-        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .chatbot-container {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .chat-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            border: 2px solid var(--neon-cyan);
-            cursor: pointer;
+        .social-icons {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
-            transition: all 0.3s;
-            animation: chatPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes chatPulse {
-            0%, 100% { box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2); }
-            50% { box-shadow: 0 10px 50px rgba(0, 217, 255, 0.4); }
-        }
-
-        .chat-button:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-window {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 350px;
-            max-height: 500px;
-            background: var(--dark-card);
-            border-radius: 20px;
-            border: 1px solid rgba(180, 124, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            animation: slideUp 0.4s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .chat-window.active {
-            display: flex;
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            padding: 20px;
-            color: white;
-            font-weight: 700;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
             gap: 15px;
-            max-height: 300px;
-        }
-
-        .message {
-            padding: 12px 16px;
-            border-radius: 12px;
-            max-width: 90%;
-            animation: messageSlide 0.3s ease-out;
-            font-size: 0.95rem;
-        }
-
-        @keyframes messageSlide {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .bot-message {
-            background: rgba(180, 124, 255, 0.2);
-            border-left: 3px solid var(--neon-purple);
-            align-self: flex-start;
-        }
-
-        .user-message {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(180, 124, 255, 0.1));
-            border-left: 3px solid var(--neon-cyan);
-            align-self: flex-end;
-        }
-
-        .chat-input-area {
-            padding: 15px;
-            border-top: 1px solid rgba(180, 124, 255, 0.2);
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(180, 124, 255, 0.2);
-            border-radius: 20px;
-            padding: 10px 15px;
-            color: white;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .chat-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: var(--neon-cyan);
-            background: rgba(0, 217, 255, 0.05);
-            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
-        }
-
-        .chat-send {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            border: none;
-            color: white;
-            cursor: pointer;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            font-size: 1.2rem;
+            border-left: 1px solid rgba(180, 124, 255, 0.2);
+            padding-left: 25px;
+            margin-left: 15px;
         }
 
-        .chat-send:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.2);
-        }
-
-        .quick-replies {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 0 15px 15px;
-            border-top: 1px solid rgba(180, 124, 255, 0.1);
-            max-height: 150px;
-            overflow-y: auto;
-        }
-
-        .quick-reply {
-            padding: 10px 15px;
+        .social-icon-link {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             background: rgba(0, 217, 255, 0.1);
             border: 1px solid rgba(0, 217, 255, 0.3);
-            border-radius: 20px;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
             transition: all 0.3s;
-            text-align: left;
+            text-decoration: none;
         }
 
-        .quick-reply:hover {
-            background: rgba(0, 217, 255, 0.2);
+        .social-icon-link:hover {
+            background: var(--neon-cyan);
             border-color: var(--neon-cyan);
-            transform: translateX(5px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
         }
 
         .hero {
@@ -408,6 +233,16 @@
             z-index: 0;
         }
 
+        .hero-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
         .hero-video-container iframe {
             width: 100vw;
             height: 56.25vw;
@@ -417,7 +252,6 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 0;
         }
 
         .hero-overlay {
@@ -455,10 +289,7 @@
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 30px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--neon-cyan) 50%, var(--neon-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 3px;
             animation: fadeInScale 1.2s ease-out;
@@ -470,12 +301,14 @@
         }
 
         .hero-subtitle {
-            font-size: 1.6rem;
+            font-family: 'Coolvetica', sans-serif;
+            font-size: 2rem;
             color: var(--text-secondary);
             margin-bottom: 50px;
-            font-weight: 300;
-            letter-spacing: 1px;
+            font-weight: 400;
+            letter-spacing: 2px;
             animation: fadeInUp 1.2s ease-out 0.3s both;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
         }
 
         @keyframes fadeInUp {
@@ -503,34 +336,10 @@
             overflow: hidden;
         }
 
-        .btn-primary::before, .btn-secondary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-primary:hover::before, .btn-secondary:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-
         .btn-primary {
             background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
             color: white;
             box-shadow: 0 10px 40px rgba(180, 124, 255, 0.2);
-            animation: btnPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes btnPulse {
-            0%, 100% { box-shadow: 0 10px 40px rgba(180, 124, 255, 0.2); }
-            50% { box-shadow: 0 10px 50px rgba(180, 124, 255, 0.3); }
         }
 
         .btn-primary:hover {
@@ -602,25 +411,7 @@
             border: 1px solid rgba(180, 124, 255, 0.2);
             text-align: center;
             transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
             cursor: pointer;
-        }
-
-        .stat-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(180, 124, 255, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .stat-box:hover::before {
-            opacity: 1;
         }
 
         .stat-box:hover {
@@ -645,11 +436,6 @@
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .comparison {
-            padding: 150px 80px;
-            background: var(--dark-bg);
         }
 
         .section-header {
@@ -677,6 +463,115 @@
             margin: 0 auto;
         }
 
+        .portfolio {
+            padding: 150px 80px;
+            background: var(--dark-bg);
+        }
+
+        .portfolio-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .portfolio-item {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: var(--dark-card);
+            border-radius: 30px;
+            padding: 30px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            transition: all 0.5s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.2);
+        }
+
+        .portfolio-video {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .portfolio-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .portfolio-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            margin-bottom: 15px;
+        }
+
+        .portfolio-info p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .why-choose {
+            padding: 150px 80px;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: var(--dark-bg);
+            padding: 50px 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(180, 124, 255, 0.2);
+            text-align: center;
+            transition: all 0.5s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--neon-purple);
+            box-shadow: 0 25px 70px rgba(180, 124, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 30px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--neon-cyan);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .comparison {
+            padding: 150px 80px;
+            background: var(--dark-bg);
+        }
+
         .comparison-table {
             max-width: 1200px;
             margin: 80px auto 0;
@@ -701,24 +596,6 @@
             font-weight: 900;
         }
 
-        .comparison-header div:first-child {
-            text-align: left;
-            color: var(--text-secondary);
-        }
-
-        .comparison-header div:nth-child(2) {
-            color: var(--text-primary);
-            border-left: 1px solid rgba(180, 124, 255, 0.2);
-            border-right: 1px solid rgba(180, 124, 255, 0.2);
-        }
-
-        .comparison-header div:last-child {
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
         .comparison-row {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -726,329 +603,11 @@
             transition: all 0.3s;
         }
 
-        .comparison-row:hover {
-            background: rgba(180, 124, 255, 0.05);
-        }
-
-        .comparison-row:last-child {
-            border-bottom: none;
-        }
+        .comparison-row:hover { background: rgba(180, 124, 255, 0.05); }
 
         .comparison-row div {
             padding: 25px 30px;
             font-size: 1.05rem;
-        }
-
-        .comparison-row div:first-child {
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .comparison-row div:nth-child(2) {
-            color: var(--text-secondary);
-            border-left: 1px solid rgba(180, 124, 255, 0.1);
-            border-right: 1px solid rgba(180, 124, 255, 0.1);
-        }
-
-        .comparison-row div:last-child {
-            color: var(--neon-cyan);
-            font-weight: 600;
-        }
-
-        .comparison-closing {
-            max-width: 900px;
-            margin: 60px auto 0;
-            text-align: center;
-            padding: 50px;
-            background: linear-gradient(135deg, rgba(180, 124, 255, 0.05), rgba(0, 217, 255, 0.05));
-            border-radius: 30px;
-            border: 1px solid rgba(180, 124, 255, 0.2);
-        }
-
-        .comparison-closing h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-
-        .comparison-closing p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .comparison-closing .highlight {
-            color: var(--neon-cyan);
-            font-weight: 700;
-        }
-
-        .portfolio {
-            padding: 150px 80px;
-            background: var(--dark-bg);
-        }
-
-        .portfolio-grid {
-            max-width: 1600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-        }
-
-        .portfolio-row {
-            display: grid;
-            grid-template-columns: 60% 40%;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .portfolio-video {
-            position: relative;
-            border-radius: 30px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            border: 2px solid rgba(180, 124, 255, 0.2);
-            transition: all 0.5s;
-        }
-
-        .portfolio-video:hover {
-            transform: scale(1.02);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.2);
-        }
-
-        .portfolio-video iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .portfolio-review {
-            background: var(--dark-card);
-            padding: 40px;
-            border-radius: 30px;
-            border: 1px solid rgba(180, 124, 255, 0.2);
-            position: relative;
-        }
-
-        .portfolio-review::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 6rem;
-            color: rgba(180, 124, 255, 0.2);
-            font-family: 'Georgia', serif;
-            line-height: 1;
-        }
-
-        .review-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .review-text {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 25px;
-        }
-
-        .review-author-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .review-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 900;
-            flex-shrink: 0;
-        }
-
-        .review-author-details h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--text-primary);
-        }
-
-        .review-author-details p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .review-rating {
-            color: var(--gold);
-            font-size: 1.1rem;
-            margin-top: 15px;
-            letter-spacing: 2px;
-        }
-
-        .why-choose {
-            padding: 150px 80px;
-            background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
-        }
-
-        .features-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 80px;
-        }
-
-        .feature-card {
-            background: var(--dark-bg);
-            padding: 50px 40px;
-            border-radius: 30px;
-            border: 1px solid rgba(180, 124, 255, 0.2);
-            text-align: center;
-            transition: all 0.5s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(180, 124, 255, 0.1), transparent);
-            transition: left 0.7s;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--neon-purple);
-            box-shadow: 0 25px 70px rgba(180, 124, 255, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 0 10px rgba(180, 124, 255, 0.3));
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .feature-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--neon-cyan);
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .feedback {
-            padding: 150px 80px;
-            background: var(--dark-bg);
-        }
-
-        .testimonials-container {
-            max-width: 1400px;
-            margin: 80px auto 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .testimonial-card {
-            background: var(--dark-card);
-            padding: 50px;
-            border-radius: 30px;
-            border: 1px solid rgba(180, 124, 255, 0.2);
-            transition: all 0.5s;
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            font-size: 8rem;
-            color: rgba(180, 124, 255, 0.2);
-            font-family: 'Georgia', serif;
-            line-height: 1;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 25px 70px rgba(0, 217, 255, 0.15);
-        }
-
-        .testimonial-text {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-            transition: transform 0.3s;
-        }
-
-        .testimonial-card:hover .author-avatar {
-            transform: scale(1.1);
-        }
-
-        .author-info h4 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            color: var(--text-primary);
-        }
-
-        .author-info p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .rating {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-top: 20px;
-            letter-spacing: 2px;
         }
 
         .contact {
@@ -1056,23 +615,12 @@
             background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
         }
 
-        .contact-container {
-            max-width: 900px;
-            margin: 80px auto 0;
-            text-align: center;
-        }
-
-        .contact-intro {
-            font-size: 1.4rem;
-            color: var(--text-secondary);
-            margin-bottom: 60px;
-            line-height: 1.8;
-        }
-
         .social-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
+            max-width: 900px;
+            margin: 80px auto 0;
         }
 
         .social-card {
@@ -1085,41 +633,18 @@
             text-decoration: none;
             color: inherit;
             display: block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.15), transparent);
-            transition: left 0.7s;
-        }
-
-        .social-card:hover::before {
-            left: 100%;
+            text-align: center;
         }
 
         .social-card:hover {
             transform: translateY(-15px);
             border-color: var(--neon-cyan);
             box-shadow: 0 25px 70px rgba(0, 217, 255, 0.25);
-            background: linear-gradient(135deg, rgba(180, 124, 255, 0.1), rgba(0, 217, 255, 0.1));
         }
 
         .social-icon {
             font-size: 4rem;
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.3));
-            transition: transform 0.3s;
-        }
-
-        .social-card:hover .social-icon {
-            transform: scale(1.2) rotate(-5deg);
         }
 
         .social-card h3 {
@@ -1129,11 +654,6 @@
             color: var(--neon-cyan);
         }
 
-        .social-card p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
         footer {
             padding: 60px 80px;
             background: var(--dark-bg);
@@ -1141,90 +661,22 @@
             text-align: center;
         }
 
-        footer p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-        }
-
         @media (max-width: 1200px) {
-            .header-nav {
-                padding: 20px 40px;
-            }
-
-            .intro-container {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-
-            .portfolio-row {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid,
-            .testimonials-container,
-            .social-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-header,
-            .comparison-row {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-header div:nth-child(2),
-            .comparison-row div:nth-child(2) {
-                border-left: none;
-                border-right: none;
-                border-top: 1px solid rgba(180, 124, 255, 0.2);
-                border-bottom: 1px solid rgba(180, 124, 255, 0.2);
-            }
+            .intro-container { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-item { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .social-icons { display: none; }
         }
 
         @media (max-width: 768px) {
-            body {
-                cursor: auto;
-            }
-
-            .cursor, .cursor-follower {
-                display: none;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .intro,
-            .portfolio,
-            .why-choose,
-            .feedback,
-            .contact,
-            .comparison {
-                padding: 80px 30px;
-            }
-
-            .intro-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .chat-window {
-                width: 280px;
-            }
+            body { cursor: auto; }
+            .cursor, .cursor-follower { display: none; }
+            .nav-links { display: none; }
+            .hero-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.4rem; }
+            .portfolio-grid, .features-grid, .social-grid { grid-template-columns: 1fr; }
+            .header-nav { width: 95%; padding: 15px 25px; }
         }
     </style>
 </head>
@@ -1234,50 +686,35 @@
     <div class="progress-bar" id="progressBar"></div>
 
     <nav class="header-nav" id="navbar">
-        <div class="logo">Zyro Visuals</div>
+        <div class="logo">
+            <img src="zyro.jpg" alt="Zyro Visuals Logo" class="logo-img">
+            <span class="logo-text">Zyro Visuals</span>
+        </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#intro">About</a></li>
-            <li><a href="#comparison">Why Agency</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#why">Why Us</a></li>
-            <li><a href="#feedback">Feedback</a></li>
             <li><a href="#contact">Contact</a></li>
+            <div class="social-icons">
+                <a href="https://discord.com/users/863354644926693396" class="social-icon-link" target="_blank">💬</a>
+                <a href="mailto:zyrovisual158@gmail.com" class="social-icon-link">📧</a>
+                <a href="https://x.com/ZyroVisual" class="social-icon-link" target="_blank">🐦</a>
+            </div>
         </ul>
     </nav>
 
-    <div class="chatbot-container">
-        <button class="chat-button" id="chatBtn">💬</button>
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">Zyro Assistant</div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="message bot-message">Hi! 👋 Welcome to Zyro Visuals. How can I help you today?</div>
-            </div>
-            <div class="quick-replies" id="quickReplies">
-                <div class="quick-reply" onclick="handleQuickReply('I want to see your portfolio')">Portfolio</div>
-                <div class="quick-reply" onclick="handleQuickReply('Tell me about your services')">Services</div>
-                <div class="quick-reply" onclick="handleQuickReply('How do I hire you?')">Hire You</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
-                <button class="chat-send" id="chatSend">📤</button>
-            </div>
-        </div>
-    </div>
-
     <section class="hero" id="home">
         <div class="hero-video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/5yx6BWlEVcY?autoplay=1&mute=1&loop=1&playlist=5yx6BWlEVcY&controls=0&showinfo=0&modestbranding=1&rel=0" 
-                frameborder="0" 
-                allow="autoplay; fullscreen; picture-in-picture" 
-                allowfullscreen
-            ></iframe>
+            <video autoplay muted loop playsinline>
+                <source src="website intro.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">Zyro Visuals</h1>
-            <p class="hero-subtitle">From blocks to bangers — that's Zyro style.</p>
+            <p class="hero-subtitle">I grab attention — you want to do the same?</p>
             <div class="hero-cta">
                 <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
                 <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Hire Me</button>
@@ -1291,8 +728,7 @@
                 <h2>Professional Roblox Video Editor</h2>
                 <p>Hello! I hope you're doing great.</p>
                 <p>My name is <span class="intro-highlight">Anshul Kurmi</span>, and I'm from India. I run <span class="intro-highlight">Zyro Visuals</span>, a creative video editing agency with over 1 year of experience in delivering professional content and a team of skilled editors with 3+ years of expertise.</p>
-                <p>We specialize in editing <span class="intro-highlight">Roblox videos</span>, turning raw gameplay into cinematic, story-driven edits that grab attention and keep viewers watching till the end. Our editors understand Roblox deeply — from camera angles to pacing and storytelling — which helps us craft edits that feel dynamic, engaging, and built to go viral.</p>
-                <p>At Zyro Visuals, we believe in quality, speed, and client satisfaction. We never stop refining a project until our clients are 100% happy. Every edit is handled with passion, precision, and teamwork — ensuring your content not only looks professional but truly stands out in the crowd.</p>
+                <p>We specialize in editing <span class="intro-highlight">Roblox videos</span>, turning raw gameplay into cinematic, story-driven edits that grab attention and keep viewers watching till the end.</p>
             </div>
             <div class="intro-stats">
                 <div class="stat-box">
@@ -1315,203 +751,64 @@
         </div>
     </section>
 
-    <section class="comparison" id="comparison">
-        <div class="section-header">
-            <h2 class="section-title">Freelancer vs Agency — The Real Difference</h2>
-            <p class="section-subtitle">See why choosing Zyro Visuals means choosing reliability and quality</p>
-        </div>
-        
-        <div class="comparison-table">
-            <div class="comparison-header">
-                <div></div>
-                <div>Freelancer</div>
-                <div>Zyro Visuals (Agency)</div>
-            </div>
-            
-            <div class="comparison-row">
-                <div>Team Power</div>
-                <div>Works alone — if stuck, work stops.</div>
-                <div>Full team support — work never stops.</div>
-            </div>
-            
-            <div class="comparison-row">
-                <div>Delivery Time</div>
-                <div>Delays if unavailable.</div>
-                <div>Always on time — seamless team workflow.</div>
-            </div>
-            
-            <div class="comparison-row">
-                <div>Quality Check</div>
-                <div>Single vision, no backup review.</div>
-                <div>Multiple editors ensure polished perfection.</div>
-            </div>
-            
-            <div class="comparison-row">
-                <div>Reliability</div>
-                <div>One issue = full delay.</div>
-                <div>Instant handoff = zero downtime.</div>
-            </div>
-            
-            <div class="comparison-row">
-                <div>Client Support</div>
-                <div>Limited response time.</div>
-                <div>Dedicated communication and 24/7 support.</div>
-            </div>
-            
-            <div class="comparison-row">
-                <div>Revisions</div>
-                <div>Extra cost for more edits.</div>
-                <div>Unlimited revisions until you're satisfied.</div>
-            </div>
-        </div>
-        
-        <div class="comparison-closing">
-            <h3>💬 Short Closing Line</h3>
-            <p>With <span class="highlight">Zyro Visuals</span>, you don't hire just one editor — you hire a <span class="highlight">team that never lets your content slow down.</span></p>
-        </div>
-    </section>
-
     <section class="portfolio" id="portfolio">
         <div class="section-header">
-            <h2 class="section-title">See How I Turn Roblox Clips Into Stunning Edits</h2>
-            <p class="section-subtitle">Check out some of my best work — each edit crafted with passion and precision</p>
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-subtitle">Check out some of my best work</p>
         </div>
         <div class="portfolio-grid">
-            <div class="portfolio-row">
+            <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe 
-                        src="https://www.youtube.com/embed/frgVAY6kWJA" 
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                    <iframe src="https://www.youtube.com/embed/frgVAY6kWJA" allowfullscreen></iframe>
                 </div>
-                <div class="portfolio-review">
-                    <div class="review-content">
-                        <p class="review-text">This looks amazing bro thank you 🙏</p>
-                        <div class="review-author-info">
-                            <div class="review-avatar">RP</div>
-                            <div class="review-author-details">
-                                <h4>Ryan Pictures</h4>
-                                <p>364,000 Subscribers</p>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
+                <div class="portfolio-info">
+                    <h3>Waffy</h3>
+                    <p>"This looks amazing bro thank you 🙏"</p>
                 </div>
             </div>
-
-            <div class="portfolio-row">
+            <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe 
-                        src="https://www.youtube.com/embed/sdHAfffZzsw" 
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                    <iframe src="https://www.youtube.com/embed/sdHAfffZzsw" allowfullscreen></iframe>
                 </div>
-                <div class="portfolio-review">
-                    <div class="review-content">
-                        <p class="review-text">I love your editing style, bro so good</p>
-                        <div class="review-author-info">
-                            <div class="review-avatar">BC</div>
-                            <div class="review-author-details">
-                                <h4>Big Craig</h4>
-                                <p>204,000 Subscribers</p>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
+                <div class="portfolio-info">
+                    <h3>Snappy</h3>
+                    <p>"I love your editing style, bro so good"</p>
                 </div>
             </div>
-
-            <div class="portfolio-row">
+            <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe 
-                        src="https://www.youtube.com/embed/X2-vch4Ae_8" 
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                    <iframe src="https://www.youtube.com/embed/X2-vch4Ae_8" allowfullscreen></iframe>
                 </div>
-                <div class="portfolio-review">
-                    <div class="review-content">
-                        <p class="review-text">Absolutely incredible work! The editing took my content to a whole new level.</p>
-                        <div class="review-author-info">
-                            <div class="review-avatar">AY</div>
-                            <div class="review-author-details">
-                                <h4>ayeyahzee</h4>
-                                <p>Content Creator</p>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
+                <div class="portfolio-info">
+                    <h3>Ayeyahzee</h3>
+                    <p>"Absolutely incredible work!"</p>
                 </div>
             </div>
-
-            <div class="portfolio-row">
+            <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe 
-                        src="https://www.youtube.com/embed/RACl1AG_rU0" 
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                    <iframe src="https://www.youtube.com/embed/RACl1AG_rU0" allowfullscreen></iframe>
                 </div>
-                <div class="portfolio-review">
-                    <div class="review-content">
-                        <p class="review-text">Fast turnaround and stunning quality. Exactly what I needed!</p>
-                        <div class="review-author-info">
-                            <div class="review-avatar">VK</div>
-                            <div class="review-author-details">
-                                <h4>Valekis</h4>
-                                <p>Gaming YouTuber</p>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
+                <div class="portfolio-info">
+                    <h3>Valekis</h3>
+                    <p>"Fast turnaround and stunning quality."</p>
                 </div>
             </div>
-
-            <div class="portfolio-row">
+            <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe 
-                        src="https://www.youtube.com/embed/R5LCmnSLwwU" 
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                    <iframe src="https://www.youtube.com/embed/R5LCmnSLwwU" allowfullscreen></iframe>
                 </div>
-                <div class="portfolio-review">
-                    <div class="review-content">
-                        <p class="review-text">Professional and creative! My viewers loved the new editing style.</p>
-                        <div class="review-author-info">
-                            <div class="review-avatar">DN</div>
-                            <div class="review-author-details">
-                                <h4>Daniela</h4>
-                                <p>Roblox Creator</p>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
+                <div class="portfolio-info">
+                    <h3>Snappy</h3>
+                    <p>"Professional and creative!"</p>
                 </div>
             </div>
-
-            <div class="portfolio-row">
+            <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe 
-                        src="https://www.youtube.com/embed/sdHAfffZzsw" 
-                        allowfullscreen
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    ></iframe>
+                    <iframe src="https://www.youtube.com/embed/sdHAfffZzsw" allowfullscreen></iframe>
                 </div>
-                <div class="portfolio-review">
-                    <div class="review-content">
-                        <p class="review-text">Best editor I've worked with! The attention to detail is unmatched.</p>
-                        <div class="review-author-info">
-                            <div class="review-avatar">JM</div>
-                            <div class="review-author-details">
-                                <h4>JustmaikoGaming</h4>
-                                <p>Gaming Channel</p>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
+                <div class="portfolio-info">
+                    <h3>Snappy</h3>
+                    <p>"Best editor I've worked with!"</p>
                 </div>
             </div>
         </div>
@@ -1520,113 +817,82 @@
     <section class="why-choose" id="why">
         <div class="section-header">
             <h2 class="section-title">Why Choose Us</h2>
-            <p class="section-subtitle">Why top gaming creators and esports teams choose to work with me</p>
+            <p class="section-subtitle">Why top creators choose Zyro Visuals</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
                 <h3>Lightning Fast</h3>
-                <p>24-48 hour turnaround time without compromising on quality. Perfect for content creators with tight schedules.</p>
+                <p>24-48 hour turnaround time without compromising quality.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🎬</div>
-                <h3>Cinematic Quality</h3>
-                <p>Hollywood-level editing with advanced VFX, color grading, and motion graphics that make your content stand out.</p>
+                <div class="feature-icon">🎮</div>
+                <h3>Roblox-Focused Expertise</h3>
+                <p>We specialize in Roblox content — every cut, effect, and transition fits your gameplay vibe perfectly.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
                 <h3>Viral Potential</h3>
-                <p>Edits optimized for maximum engagement and shareability across YouTube, TikTok, and Instagram.</p>
+                <p>Edits optimized for maximum engagement across all platforms.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔥</div>
                 <h3>Trend Mastery</h3>
-                <p>Stay ahead with the latest editing trends, effects, and styles that resonate with gaming audiences.</p>
+                <p>Stay ahead with the latest editing trends and styles.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💎</div>
                 <h3>Premium Tools</h3>
-                <p>Using industry-standard software including After Effects, Premiere Pro, and DaVinci Resolve.</p>
+                <p>Industry-standard software: After Effects, Premiere Pro, DaVinci.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🤝</div>
                 <h3>Unlimited Revisions</h3>
-                <p>Your satisfaction is guaranteed. I work with you until the edit perfectly matches your vision.</p>
+                <p>Your satisfaction is guaranteed with unlimited revisions.</p>
             </div>
         </div>
     </section>
 
-    <section class="feedback" id="feedback">
+    <section class="comparison" id="comparison">
         <div class="section-header">
-            <h2 class="section-title">Client Feedback</h2>
-            <p class="section-subtitle">Hear what top gaming creators and esports teams say about working with me</p>
+            <h2 class="section-title">Freelancer vs Agency</h2>
+            <p class="section-subtitle">See why choosing Zyro Visuals means choosing reliability and quality</p>
         </div>
-        <div class="testimonials-container">
-            <div class="testimonial-card">
-                <p class="testimonial-text">The editing quality is absolutely insane! My channel grew from 50K to 500K subscribers in just 6 months. Every video feels like a blockbuster movie.</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">AK</div>
-                    <div class="author-info">
-                        <h4>Alex "Apex King" Rodriguez</h4>
-                        <p>YouTube Creator • 500K Subs</p>
-                    </div>
-                </div>
-                <div class="rating">★★★★★</div>
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div></div>
+                <div>Freelancer</div>
+                <div>Zyro Visuals</div>
             </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">Professional, fast, and incredibly talented. The tournament highlight reel got over 2 million views in the first week. Best investment we've made!</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">TG</div>
-                    <div class="author-info">
-                        <h4>Team Genesis Esports</h4>
-                        <p>Professional Esports Org</p>
-                    </div>
-                </div>
-                <div class="rating">★★★★★</div>
+            <div class="comparison-row">
+                <div>Team Power</div>
+                <div>Works alone</div>
+                <div>Full team support</div>
             </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">The attention to detail is unmatched. Every transition, every effect, every frame is perfectly synchronized with the music. Pure artistry!</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">SP</div>
-                    <div class="author-info">
-                        <h4>Sarah "PixelPro" Martinez</h4>
-                        <p>Twitch Partner • 200K Followers</p>
-                    </div>
-                </div>
-                <div class="rating">★★★★★</div>
+            <div class="comparison-row">
+                <div>Delivery Time</div>
+                <div>Delays if unavailable</div>
+                <div>Always on time</div>
             </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">I've worked with 10+ editors, and none come close to this level of quality. The cinematic feel is exactly what my brand needed. Highly recommend!</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">DJ</div>
-                    <div class="author-info">
-                        <h4>David "JukeBox" Chen</h4>
-                        <p>Content Creator • 1M Subs</p>
-                    </div>
-                </div>
-                <div class="rating">★★★★★</div>
+            <div class="comparison-row">
+                <div>Quality Check</div>
+                <div>Single vision</div>
+                <div>Multiple editors review</div>
             </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">Fast turnaround, unlimited revisions, and stunning results. The montage went viral with 5M views. Worth every penny!</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">VF</div>
-                    <div class="author-info">
-                        <h4>Vortex Gaming</h4>
-                        <p>Gaming Brand</p>
-                    </div>
-                </div>
-                <div class="rating">★★★★★</div>
+            <div class="comparison-row">
+                <div>Reliability</div>
+                <div>One issue = delay</div>
+                <div>Zero downtime</div>
             </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">The edits transformed our content completely. Engagement is up 300%, and sponsors are lining up. This editor is a game-changer!</p>
-                <div class="testimonial-author">
-                    <div class="author-avatar">EL</div>
-                    <div class="author-info">
-                        <h4>Emma "Lightning" Foster</h4>
-                        <p>Pro Gamer • Valorant</p>
-                    </div>
-                </div>
-                <div class="rating">★★★★★</div>
+            <div class="comparison-row">
+                <div>Support</div>
+                <div>Limited response</div>
+                <div>24/7 dedicated support</div>
+            </div>
+            <div class="comparison-row">
+                <div>Revisions</div>
+                <div>Extra cost</div>
+                <div>Unlimited</div>
             </div>
         </div>
     </section>
@@ -1634,36 +900,29 @@
     <section class="contact" id="contact">
         <div class="section-header">
             <h2 class="section-title">Let's Create Together</h2>
-            <p class="section-subtitle">Ready to take your content to the next level? Reach out through your preferred platform!</p>
+            <p class="section-subtitle">Ready to take your content to the next level?</p>
         </div>
-
-        <div class="contact-container">
-            <p class="contact-intro">Whether you need a quick montage or a full content package, I'm here to bring your vision to life. Let's collaborate and make something amazing!</p>
-
-            <div class="social-grid">
-                <a href="https://discord.com/users/863354644926693396" class="social-card" target="_blank">
-                    <div class="social-icon">💬</div>
-                    <h3>Discord</h3>
-                    <p>@ZyroVisual</p>
-                </a>
-
-                <a href="mailto:zyrovisual158@gmail.com" class="social-card">
-                    <div class="social-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>zyrovisual158@gmail.com</p>
-                </a>
-
-                <a href="https://x.com/ZyroVisual" class="social-card" target="_blank">
-                    <div class="social-icon">🐦</div>
-                    <h3>X (Twitter)</h3>
-                    <p>@ZyroVisual</p>
-                </a>
-            </div>
+        <div class="social-grid">
+            <a href="https://discord.com/users/863354644926693396" class="social-card" target="_blank">
+                <div class="social-icon">💬</div>
+                <h3>Discord</h3>
+                <p>@ZyroVisual</p>
+            </a>
+            <a href="mailto:zyrovisual158@gmail.com" class="social-card">
+                <div class="social-icon">📧</div>
+                <h3>Email</h3>
+                <p>zyrovisual158@gmail.com</p>
+            </a>
+            <a href="https://x.com/ZyroVisual" class="social-card" target="_blank">
+                <div class="social-icon">🐦</div>
+                <h3>X (Twitter)</h3>
+                <p>@ZyroVisual</p>
+            </a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Zyro Visuals - Designed by <a href="https://www.instagram.com/a2z__clicks" target="_blank">a2z__clicks</a></p>
+        <p>&copy; 2025 Zyro Visuals</p>
     </footer>
 
     <script>
@@ -1691,7 +950,7 @@
         }
         animateCursor();
 
-        const hoverElements = document.querySelectorAll('a, button, .portfolio-video, .social-card, .feature-card, .testimonial-card, .stat-box, .chat-button, .quick-reply');
+        const hoverElements = document.querySelectorAll('a, button, .portfolio-item, .social-card, .feature-card, .stat-box');
         
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -1703,16 +962,6 @@
                 cursor.classList.remove('active');
                 cursorFollower.classList.remove('active');
             });
-        });
-
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-            cursorFollower.style.opacity = '0';
-        });
-
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '1';
-            cursorFollower.style.opacity = '1';
         });
 
         window.addEventListener('scroll', function() {
@@ -1730,73 +979,6 @@
             progressBar.style.width = scrolled + '%';
         });
 
-        const chatBtn = document.getElementById('chatBtn');
-        const chatWindow = document.getElementById('chatWindow');
-        const chatInput = document.getElementById('chatInput');
-        const chatSend = document.getElementById('chatSend');
-        const chatMessages = document.getElementById('chatMessages');
-
-        chatBtn.addEventListener('click', () => {
-            chatWindow.classList.toggle('active');
-        });
-
-        chatSend.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (message === '') return;
-
-            const userMsg = document.createElement('div');
-            userMsg.className = 'message user-message';
-            userMsg.textContent = message;
-            chatMessages.appendChild(userMsg);
-            chatInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'message bot-message';
-                botMsg.textContent = getResponse(message);
-                chatMessages.appendChild(botMsg);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 500);
-        }
-
-        function handleQuickReply(text) {
-            chatInput.value = text;
-            sendMessage();
-        }
-
-        function getResponse(msg) {
-            const responses = {
-                'portfolio': 'Check out my portfolio section above! I have 6 amazing projects showcasing my work with real client reviews.',
-                'services': 'I offer professional Roblox video editing with 24-48 hour turnaround, cinematic quality, and unlimited revisions!',
-                'hire': 'Great! You can reach me via Discord (@ZyroVisual), Email (zyrovisual158@gmail.com), or X/Twitter (@ZyroVisual). Let\'s create something amazing!',
-                'default': 'Thanks for your interest! Feel free to explore the site or reach out through our contact methods in the contact section.'
-            };
-
-            const lowerMsg = msg.toLowerCase();
-            if (lowerMsg.includes('portfolio')) return responses.portfolio;
-            if (lowerMsg.includes('service')) return responses.services;
-            if (lowerMsg.includes('hire')) return responses.hire;
-            return responses.default;
-        }
-
-        function createParticles() {
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'floating-particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                document.body.appendChild(particle);
-            }
-        }
-        createParticles();
-
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1804,80 +986,6 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            });
-        });
-
-        const observerOptions = { threshold: 0.5, rootMargin: '0px' };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(stat => {
-                        const text = stat.textContent;
-                        const hasPlus = text.includes('+');
-                        const hasPercent = text.includes('%');
-                        const hasM = text.includes('M');
-                        const number = parseInt(text.replace(/[^0-9]/g, ''));
-                        
-                        let current = 0;
-                        const increment = number / 80;
-                        const timer = setInterval(() => {
-                            current += increment;
-                            if (current >= number) {
-                                stat.textContent = number + (hasM ? 'M' : '') + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
-                                clearInterval(timer);
-                            } else {
-                                stat.textContent = Math.floor(current) + (hasM ? 'M' : '') + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
-                            }
-                        }, 20);
-                    });
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const statsSection = document.querySelector('.intro-stats');
-        if (statsSection) observer.observe(statsSection);
-
-        const fadeObserver = new IntersectionObserver(function(entries) {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, index * 100);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.feature-card, .testimonial-card, .portfolio-row, .comparison-row').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            fadeObserver.observe(el);
-        });
-
-        document.querySelectorAll('.feature-card, .testimonial-card, .social-card, .stat-box').forEach(card => {
-            card.addEventListener('mousemove', function(e) {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
-
-        window.addEventListener('load', function() {
-            document.querySelectorAll('img').forEach(img => {
-                img.style.animation = 'fadeIn 0.5s ease-out';
             });
         });
     </script>
