@@ -33,6 +33,16 @@
 
         html { scroll-behavior: smooth; }
 
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         .cursor {
             position: fixed;
             width: 20px;
@@ -209,7 +219,7 @@
         .social-icon-link:hover {
             background: var(--neon-cyan);
             border-color: var(--neon-cyan);
-            transform: translateY(-3px);
+            transform: translateY(-3px) rotate(360deg);
             box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
         }
 
@@ -237,17 +247,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .hero-video-container iframe {
-            width: 100vw;
-            height: 56.25vw;
-            min-height: 100vh;
-            min-width: 177.77vh;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -292,12 +291,18 @@
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 3px;
-            animation: fadeInScale 1.2s ease-out;
+            animation: fadeInScale 1.2s ease-out, titleFloat 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.5), 0 0 60px rgba(180, 124, 255, 0.3);
         }
 
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.9) translateY(30px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero-subtitle {
@@ -309,6 +314,7 @@
             letter-spacing: 2px;
             animation: fadeInUp 1.2s ease-out 0.3s both;
             text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+            min-height: 60px;
         }
 
         @keyframes fadeInUp {
@@ -342,6 +348,24 @@
             box-shadow: 0 10px 40px rgba(180, 124, 255, 0.2);
         }
 
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
         .btn-primary:hover {
             transform: translateY(-5px) scale(1.05);
             box-shadow: 0 15px 50px rgba(180, 124, 255, 0.3);
@@ -363,6 +387,7 @@
         .intro {
             padding: 150px 80px;
             background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+            position: relative;
         }
 
         .intro-container {
@@ -383,6 +408,20 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .intro-text h2.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: textShine 2s ease-in-out infinite;
+        }
+
+        @keyframes textShine {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
         }
 
         .intro-text p {
@@ -390,11 +429,30 @@
             color: var(--text-secondary);
             line-height: 2;
             margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
         }
+
+        .intro-text p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-text p:nth-child(2) { transition-delay: 0.1s; }
+        .intro-text p:nth-child(3) { transition-delay: 0.2s; }
+        .intro-text p:nth-child(4) { transition-delay: 0.3s; }
 
         .intro-highlight {
             color: var(--neon-cyan);
             font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+            transition: all 0.3s;
+        }
+
+        .intro-highlight:hover {
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.8);
+            letter-spacing: 1px;
         }
 
         .intro-stats {
@@ -412,12 +470,42 @@
             text-align: center;
             transition: all 0.4s;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
         }
 
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s;
+        }
+
+        .stat-box:hover::before {
+            transform: scale(1);
+        }
+
+        .stat-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-box:nth-child(1) { transition: all 0.8s ease-out 0.1s; }
+        .stat-box:nth-child(2) { transition: all 0.8s ease-out 0.2s; }
+        .stat-box:nth-child(3) { transition: all 0.8s ease-out 0.3s; }
+        .stat-box:nth-child(4) { transition: all 0.8s ease-out 0.4s; }
+
         .stat-box:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.05);
             border-color: var(--neon-purple);
-            box-shadow: 0 20px 60px rgba(180, 124, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(180, 124, 255, 0.25);
         }
 
         .stat-number {
@@ -429,6 +517,8 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .stat-label {
@@ -436,6 +526,8 @@
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
 
         .section-header {
@@ -454,6 +546,14 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-subtitle {
@@ -461,11 +561,20 @@
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out 0.2s;
+        }
+
+        .section-subtitle.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .portfolio {
             padding: 150px 80px;
             background: var(--dark-bg);
+            position: relative;
         }
 
         .portfolio-grid {
@@ -486,10 +595,34 @@
             padding: 30px;
             border: 1px solid rgba(180, 124, 255, 0.2);
             transition: all 0.5s;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .portfolio-item:hover::before {
+            left: 100%;
+        }
+
+        .portfolio-item.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .portfolio-item:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             border-color: var(--neon-cyan);
             box-shadow: 0 25px 70px rgba(0, 217, 255, 0.2);
         }
@@ -498,6 +631,13 @@
             aspect-ratio: 16/9;
             overflow: hidden;
             border-radius: 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-video {
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
         }
 
         .portfolio-video iframe {
@@ -511,6 +651,12 @@
             font-size: 1.8rem;
             color: var(--neon-cyan);
             margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-info h3 {
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
+            transform: translateX(5px);
         }
 
         .portfolio-info p {
@@ -523,6 +669,7 @@
         .why-choose {
             padding: 150px 80px;
             background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+            position: relative;
         }
 
         .features-grid {
@@ -541,10 +688,37 @@
             border: 1px solid rgba(180, 124, 255, 0.2);
             text-align: center;
             transition: all 0.5s;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(180, 124, 255, 0.1), transparent);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s;
+        }
+
+        .feature-card:hover::after {
+            width: 400px;
+            height: 400px;
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .feature-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) scale(1.05);
             border-color: var(--neon-purple);
             box-shadow: 0 25px 70px rgba(180, 124, 255, 0.2);
         }
@@ -552,6 +726,26 @@
         .feature-icon {
             font-size: 4rem;
             margin-bottom: 30px;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.5));
+            transition: all 0.3s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-card:hover .feature-icon {
+            animation: spin 0.6s ease-in-out;
+            filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.8));
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            to { transform: rotate(360deg) scale(1); }
         }
 
         .feature-card h3 {
@@ -559,17 +753,22 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
             color: var(--neon-cyan);
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card p {
             color: var(--text-secondary);
             font-size: 1.1rem;
             line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
 
         .comparison {
             padding: 150px 80px;
             background: var(--dark-bg);
+            position: relative;
         }
 
         .comparison-table {
@@ -579,6 +778,14 @@
             border-radius: 30px;
             border: 1px solid rgba(180, 124, 255, 0.2);
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .comparison-table.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .comparison-header {
@@ -603,16 +810,25 @@
             transition: all 0.3s;
         }
 
-        .comparison-row:hover { background: rgba(180, 124, 255, 0.05); }
+        .comparison-row:hover { 
+            background: rgba(180, 124, 255, 0.05);
+            transform: scale(1.02);
+        }
 
         .comparison-row div {
             padding: 25px 30px;
             font-size: 1.05rem;
+            transition: all 0.3s;
+        }
+
+        .comparison-row:hover div {
+            color: var(--neon-cyan);
         }
 
         .contact {
             padding: 150px 80px;
             background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+            position: relative;
         }
 
         .social-grid {
@@ -634,10 +850,37 @@
             color: inherit;
             display: block;
             text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s;
+        }
+
+        .social-card:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .social-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .social-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) scale(1.05);
             border-color: var(--neon-cyan);
             box-shadow: 0 25px 70px rgba(0, 217, 255, 0.25);
         }
@@ -645,6 +888,16 @@
         .social-icon {
             font-size: 4rem;
             margin-bottom: 25px;
+            display: inline-block;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 5px 10px rgba(0, 217, 255, 0.3));
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.2) rotate(360deg);
+            filter: drop-shadow(0 10px 20px rgba(0, 217, 255, 0.6));
         }
 
         .social-card h3 {
@@ -652,6 +905,13 @@
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--neon-cyan);
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-card p {
+            position: relative;
+            z-index: 1;
         }
 
         footer {
@@ -659,6 +919,452 @@
             background: var(--dark-bg);
             border-top: 1px solid rgba(180, 124, 255, 0.2);
             text-align: center;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--neon-cyan);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 40px rgba(180, 124, 255, 0.3);
+            transition: all 0.3s;
+            animation: pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 40px rgba(180, 124, 255, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 50px rgba(180, 124, 255, 0.5); }
+        }
+
+        .chatbot-toggle::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .chatbot-toggle:hover::before {
+            opacity: 1;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        #roblox-character {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 380px;
+            height: 550px;
+            background: var(--dark-card);
+            border-radius: 25px;
+            border: 1px solid rgba(180, 124, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chatbot-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .chatbot-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 1;
+            animation: avatarBounce 1s ease-in-out infinite;
+        }
+
+        @keyframes avatarBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .chatbot-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .chatbot-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+        }
+
+        .chatbot-info p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chatbot-message {
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chatbot-message.bot {
+            background: rgba(180, 124, 255, 0.2);
+            align-self: flex-start;
+            border: 1px solid rgba(180, 124, 255, 0.3);
+        }
+
+        .chatbot-message.user {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            align-self: flex-end;
+            color: white;
+        }
+
+        .chatbot-input-area {
+            padding: 20px;
+            border-top: 1px solid rgba(180, 124, 255, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            background: var(--dark-bg);
+            border: 1px solid rgba(180, 124, 255, 0.3);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .chatbot-input:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+        }
+
+        .chatbot-send {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .chatbot-send:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
+        }
+
+        .chatbot-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-action {
+            padding: 8px 16px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-action:hover {
+            background: rgba(0, 217, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 217, 255, 0.2);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: rippleEffect 0.6s ease-out;
+            pointer-events: none;
+        }
+        
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* New enhanced animations */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.3;
+            animation: floatAround 20s infinite linear;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 50px) rotate(90deg); }
+            50% { transform: translate(50px, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        .particle-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+        }
+
+        .particle-trail::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--neon-cyan);
+            animation: trailFade 0.6s forwards;
+        }
+
+        @keyframes trailFade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
+        }
+
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--neon-pink);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 var(--neon-cyan);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(37px, 9999px, 20px, 0); }
+            100% { clip: rect(4px, 9999px, 91px, 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(26px, 9999px, 55px, 0); }
+            95% { clip: rect(42px, 9999px, 97px, 0); }
+            100% { clip: rect(38px, 9999px, 49px, 0); }
+        }
+
+        .hologram-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hologram-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            animation: hologram 3s infinite linear;
+        }
+
+        @keyframes hologram {
+            0% { left: -60%; }
+            100% { left: 120%; }
+        }
+
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
         }
 
         @media (max-width: 1200px) {
@@ -672,25 +1378,93 @@
         @media (max-width: 768px) {
             body { cursor: auto; }
             .cursor, .cursor-follower { display: none; }
-            .nav-links { display: none; }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                left: 0;
+                width: 100%;
+                background: rgba(13, 13, 26, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px;
+                gap: 25px;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+                border-radius: 0 0 20px 20px;
+                border: 1px solid rgba(180, 124, 255, 0.2);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+            
             .hero-title { font-size: 3rem; }
             .hero-subtitle { font-size: 1.4rem; }
             .portfolio-grid, .features-grid, .social-grid { grid-template-columns: 1fr; }
             .header-nav { width: 95%; padding: 15px 25px; }
+            .intro, .portfolio, .why-choose, .comparison, .contact { padding: 100px 30px; }
+            .intro-container { gap: 50px; }
+            .section-title { font-size: 2.5rem; }
+            .intro-text h2 { font-size: 2.5rem; }
+            
+            .chatbot-window {
+                width: 90vw;
+                right: 5vw;
+                left: 5vw;
+            }
+            
+            .chatbot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            #roblox-character {
+                width: 150px;
+                height: 150px;
+            }
         }
     </style>
 </head>
 <body>
+    <canvas id="particles-canvas"></canvas>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Matrix Rain Background -->
+    <canvas class="matrix-rain" id="matrixRain"></canvas>
+
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="top: 10%; left: 5%; font-size: 2rem;">🎮</div>
+        <div class="floating-element" style="top: 20%; right: 10%; font-size: 1.5rem;">🎬</div>
+        <div class="floating-element" style="bottom: 30%; left: 15%; font-size: 2.5rem;">⚡</div>
+        <div class="floating-element" style="bottom: 10%; right: 20%; font-size: 1.8rem;">🔥</div>
+        <div class="floating-element" style="top: 40%; left: 25%; font-size: 2.2rem;">💎</div>
+    </div>
 
     <nav class="header-nav" id="navbar">
         <div class="logo">
             <img src="zyro.jpg" alt="Zyro Visuals Logo" class="logo-img">
             <span class="logo-text">Zyro Visuals</span>
         </div>
-        <ul class="nav-links">
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#intro">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
@@ -704,26 +1478,22 @@
         </ul>
     </nav>
 
-<section class="hero" id="home">
-    <div class="hero-video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/DwBQV77HpV0?autoplay=1&mute=1&loop=1&playlist=DwBQV77HpV0&controls=0&showinfo=0&modestbranding=1"
-            frameborder="0"
-            allow="autoplay; fullscreen"
-            allowfullscreen>
-        </iframe>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">Zyro Visuals</h1>
-        <p class="hero-subtitle">I grab attention — you want to do the same?</p>
-        <div class="hero-cta">
-            <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior: 'smooth'})">View Portfolio</button>
-            <button class="btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Hire Me</button>
+    <section class="hero" id="home">
+        <div class="hero-video-container">
+            <video id="heroVideo" muted loop playsinline>
+                <source src="hero-video.mp4" type="video/mp4">
+            </video>
         </div>
-    </div>
-</section>
-
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title glitch-text" data-text="Zyro Visuals">Zyro Visuals</h1>
+            <p class="hero-subtitle"></p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="scrollToSection('portfolio')">View Portfolio</button>
+                <button class="btn-secondary" onclick="scrollToSection('contact')">Hire Me</button>
+            </div>
+        </div>
+    </section>
 
     <section class="intro" id="intro">
         <div class="intro-container">
@@ -734,20 +1504,20 @@
                 <p>We specialize in editing <span class="intro-highlight">Roblox videos</span>, turning raw gameplay into cinematic, story-driven edits that grab attention and keep viewers watching till the end.</p>
             </div>
             <div class="intro-stats">
-                <div class="stat-box">
-                    <div class="stat-number">250+</div>
+                <div class="stat-box hologram-effect">
+                    <div class="stat-number" data-target="250">0</div>
                     <div class="stat-label">Projects Completed</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">6+</div>
+                <div class="stat-box hologram-effect">
+                    <div class="stat-number" data-target="6">0</div>
                     <div class="stat-label">Happy Clients</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">6M+</div>
-                    <div class="stat-label">Total Views</div>
+                <div class="stat-box hologram-effect">
+                    <div class="stat-number" data-target="6">0</div>
+                    <div class="stat-label">Total Views (M+)</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-number">95%</div>
+                <div class="stat-box hologram-effect">
+                    <div class="stat-number" data-target="95">0</div>
                     <div class="stat-label">Client Satisfaction</div>
                 </div>
             </div>
@@ -762,7 +1532,7 @@
         <div class="portfolio-grid">
             <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe src="https://www.youtube.com/embed/frgVAY6kWJA" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/frgVAY6kWJA" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="portfolio-info">
                     <h3>Waffy</h3>
@@ -771,7 +1541,7 @@
             </div>
             <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe src="https://www.youtube.com/embed/sdHAfffZzsw" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/sdHAfffZzsw" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="portfolio-info">
                     <h3>Snappy</h3>
@@ -780,7 +1550,7 @@
             </div>
             <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe src="https://www.youtube.com/embed/X2-vch4Ae_8" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/X2-vch4Ae_8" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="portfolio-info">
                     <h3>Ayeyahzee</h3>
@@ -789,7 +1559,7 @@
             </div>
             <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe src="https://www.youtube.com/embed/RACl1AG_rU0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/RACl1AG_rU0" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="portfolio-info">
                     <h3>Valekis</h3>
@@ -798,20 +1568,11 @@
             </div>
             <div class="portfolio-item">
                 <div class="portfolio-video">
-                    <iframe src="https://www.youtube.com/embed/R5LCmnSLwwU" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/R5LCmnSLwwU" allowfullscreen loading="lazy"></iframe>
                 </div>
                 <div class="portfolio-info">
                     <h3>Snappy</h3>
                     <p>"Professional and creative!"</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-video">
-                    <iframe src="https://www.youtube.com/embed/sdHAfffZzsw" allowfullscreen></iframe>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Snappy</h3>
-                    <p>"Best editor I've worked with!"</p>
                 </div>
             </div>
         </div>
@@ -863,7 +1624,7 @@
         </div>
         <div class="comparison-table">
             <div class="comparison-header">
-                <div></div>
+                <div>Features</div>
                 <div>Freelancer</div>
                 <div>Zyro Visuals</div>
             </div>
@@ -924,11 +1685,262 @@
         </div>
     </section>
 
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">🤖</button>
+        <canvas id="roblox-character"></canvas>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">🎮</div>
+                <div class="chatbot-info">
+                    <h3>Zyro Assistant</h3>
+                    <p>Online • Ready to help!</p>
+                </div>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chatbot-message bot">
+                    Hey there! 👋 I'm Zyro's AI assistant. How can I help you today?
+                </div>
+                <div class="chatbot-quick-actions">
+                    <button class="quick-action" onclick="sendQuickMessage('pricing')">💰 Pricing</button>
+                    <button class="quick-action" onclick="sendQuickMessage('turnaround')">⏱️ Turnaround Time</button>
+                    <button class="quick-action" onclick="sendQuickMessage('portfolio')">🎬 See Portfolio</button>
+                    <button class="quick-action" onclick="sendQuickMessage('contact')">📞 Contact Info</button>
+                </div>
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." onkeypress="handleChatKeypress(event)">
+                <button class="chatbot-send" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2025 Zyro Visuals</p>
+        <p>&copy; 2025 Zyro Visuals. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        // Three.js Particle Background
+        let scene, camera, renderer, particles;
+        
+        function initParticles() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 50;
+
+            renderer = new THREE.WebGLRenderer({ 
+                canvas: document.getElementById('particles-canvas'),
+                alpha: true,
+                antialias: true
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            const geometry = new THREE.BufferGeometry();
+            const particleCount = 1500;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 100;
+                positions[i + 1] = (Math.random() - 0.5) * 100;
+                positions[i + 2] = (Math.random() - 0.5) * 100;
+
+                const color = new THREE.Color();
+                color.setHSL(Math.random() * 0.3 + 0.6, 0.8, 0.6);
+                colors[i] = color.r;
+                colors[i + 1] = color.g;
+                colors[i + 2] = color.b;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.8,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            animateParticles();
+        }
+
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            
+            particles.rotation.x += 0.0002;
+            particles.rotation.y += 0.0003;
+
+            const positions = particles.geometry.attributes.position.array;
+            for (let i = 1; i < positions.length; i += 3) {
+                positions[i] += Math.sin(Date.now() * 0.001 + i) * 0.01;
+            }
+            particles.geometry.attributes.position.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Initialize particles only on desktop
+        if (window.innerWidth > 768) {
+            initParticles();
+        }
+
+        // Matrix Rain Effect
+        function initMatrixRain() {
+            const canvas = document.getElementById('matrixRain');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const chars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789";
+            const charArray = chars.split("");
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+            
+            function drawMatrix() {
+                ctx.fillStyle = "rgba(5, 5, 16, 0.04)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = "#00d9ff";
+                ctx.font = fontSize + "px monospace";
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = charArray[Math.floor(Math.random() * charArray.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(drawMatrix, 35);
+        }
+        
+        initMatrixRain();
+
+        // 3D Roblox Character Animation
+        let characterScene, characterCamera, characterRenderer, robloxCharacter;
+        
+        function initRobloxCharacter() {
+            const canvas = document.getElementById('roblox-character');
+            characterScene = new THREE.Scene();
+            characterCamera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+            characterCamera.position.z = 5;
+
+            characterRenderer = new THREE.WebGLRenderer({ 
+                canvas: canvas,
+                alpha: true,
+                antialias: true
+            });
+            characterRenderer.setSize(200, 200);
+            characterRenderer.setPixelRatio(window.devicePixelRatio);
+
+            // Create simple Roblox character
+            const group = new THREE.Group();
+
+            // Head
+            const headGeometry = new THREE.BoxGeometry(1.2, 1.2, 1.2);
+            const headMaterial = new THREE.MeshPhongMaterial({ color: 0xffc9a3 });
+            const head = new THREE.Mesh(headGeometry, headMaterial);
+            head.position.y = 1.8;
+            group.add(head);
+
+            // Body
+            const bodyGeometry = new THREE.BoxGeometry(1.5, 1.8, 0.8);
+            const bodyMaterial = new THREE.MeshPhongMaterial({ color: 0x00d9ff });
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            body.position.y = 0.5;
+            group.add(body);
+
+            // Left Arm
+            const armGeometry = new THREE.BoxGeometry(0.4, 1.5, 0.4);
+            const armMaterial = new THREE.MeshPhongMaterial({ color: 0xffc9a3 });
+            const leftArm = new THREE.Mesh(armGeometry, armMaterial);
+            leftArm.position.set(-1, 0.5, 0);
+            group.add(leftArm);
+
+            // Right Arm
+            const rightArm = new THREE.Mesh(armGeometry, armMaterial);
+            rightArm.position.set(1, 0.5, 0);
+            group.add(rightArm);
+
+            // Left Leg
+            const legGeometry = new THREE.BoxGeometry(0.5, 1.5, 0.5);
+            const legMaterial = new THREE.MeshPhongMaterial({ color: 0xb47cff });
+            const leftLeg = new THREE.Mesh(legGeometry, legMaterial);
+            leftLeg.position.set(-0.4, -0.8, 0);
+            group.add(leftLeg);
+
+            // Right Leg
+            const rightLeg = new THREE.Mesh(legGeometry, legMaterial);
+            rightLeg.position.set(0.4, -0.8, 0);
+            group.add(rightLeg);
+
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            characterScene.add(ambientLight);
+
+            const pointLight = new THREE.PointLight(0x00d9ff, 1);
+            pointLight.position.set(5, 5, 5);
+            characterScene.add(pointLight);
+
+            robloxCharacter = group;
+            characterScene.add(robloxCharacter);
+
+            animateRobloxCharacter();
+        }
+
+        function animateRobloxCharacter() {
+            requestAnimationFrame(animateRobloxCharacter);
+            
+            if (robloxCharacter) {
+                robloxCharacter.rotation.y += 0.01;
+                robloxCharacter.position.y = Math.sin(Date.now() * 0.001) * 0.1;
+            }
+
+            characterRenderer.render(characterScene, characterCamera);
+        }
+
+        initRobloxCharacter();
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            });
+        });
+        
+        // Custom cursor
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
         let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0, followerX = 0, followerY = 0;
@@ -936,6 +1948,11 @@
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            
+            // Create particle trail
+            if (window.matchMedia("(hover: hover)").matches) {
+                createParticleTrail(e.clientX, e.clientY);
+            }
         });
 
         function animateCursor() {
@@ -951,7 +1968,10 @@
 
             requestAnimationFrame(animateCursor);
         }
-        animateCursor();
+        
+        if (window.matchMedia("(hover: hover)").matches) {
+            animateCursor();
+        }
 
         const hoverElements = document.querySelectorAll('a, button, .portfolio-item, .social-card, .feature-card, .stat-box');
         
@@ -967,6 +1987,20 @@
             });
         });
 
+        // Particle trail effect
+        function createParticleTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'particle-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.remove();
+            }, 600);
+        }
+
+        // Scroll progress bar
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             const progressBar = document.getElementById('progressBar');
@@ -982,6 +2016,7 @@
             progressBar.style.width = scrolled + '%';
         });
 
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -990,6 +2025,241 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+        
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.intro-text h2, .intro-text p, .stat-box, .section-title, .section-subtitle, .portfolio-item, .feature-card, .comparison-table, .social-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced counter animation with easing
+        function easeOutQuad(t) {
+            return t * (2 - t);
+        }
+
+        function animateCounter(element, start, end, duration, suffix = '') {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutQuad(progress);
+                const value = Math.floor(easedProgress * (end - start) + start);
+                
+                element.textContent = value + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = end + suffix;
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Stat observer with counter animation
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                    entry.target.classList.add('counted');
+                    const numberEl = entry.target.querySelector('.stat-number');
+                    const target = parseInt(numberEl.dataset.target);
+                    const labelText = entry.target.querySelector('.stat-label').textContent;
+                    const suffix = labelText.includes('Satisfaction') ? '%' : '+';
+                    animateCounter(numberEl, 0, target, 2500, suffix);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-box').forEach(box => statObserver.observe(box));
+
+        // Typing effect for hero subtitle
+        const subtitle = document.querySelector('.hero-subtitle');
+        const subtitleText = 'I grab attention — you want to do the same?';
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < subtitleText.length) {
+                subtitle.textContent += subtitleText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        setTimeout(typeWriter, 1200);
+
+        // Hero video autoplay
+        const heroVideo = document.getElementById('heroVideo');
+        heroVideo.play().catch(() => {
+            document.body.addEventListener('click', () => {
+                heroVideo.play();
+            }, { once: true });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroContent = document.querySelector('.hero-content');
+            const heroVideoEl = document.querySelector('.hero-video-container video');
+            
+            if (heroContent) heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (heroVideoEl) heroVideoEl.style.transform = `translate(-50%, -50%) translateY(${scrolled * 0.3}px)`;
+        });
+
+        // Ripple effect on click
+        document.querySelectorAll('.btn-primary, .btn-secondary, .social-card, .stat-box').forEach(element => {
+            element.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Tilt effect on cards
+        document.querySelectorAll('.portfolio-item, .feature-card, .social-card, .stat-box').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Chatbot functionality
+        let chatbotOpen = false;
+
+        function toggleChatbot() {
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            chatbotOpen = !chatbotOpen;
+            if (chatbotOpen) {
+                chatbotWindow.classList.add('active');
+            } else {
+                chatbotWindow.classList.remove('active');
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, 'user');
+                input.value = '';
+                
+                setTimeout(() => {
+                    const response = getChatbotResponse(message.toLowerCase());
+                    addMessage(response, 'bot');
+                }, 600);
+            }
+        }
+
+        function sendQuickMessage(type) {
+            const messages = {
+                'pricing': 'What are your pricing rates?',
+                'turnaround': 'What is your turnaround time?',
+                'portfolio': 'Can I see your portfolio?',
+                'contact': 'How can I contact you?'
+            };
+            
+            const message = messages[type];
+            addMessage(message, 'user');
+            
+            setTimeout(() => {
+                const response = getChatbotResponse(type);
+                addMessage(response, 'bot');
+            }, 600);
+        }
+
+        function getChatbotResponse(message) {
+            if (message.includes('pricing') || message.includes('price') || message.includes('cost')) {
+                return "Our pricing depends on the project complexity. For standard Roblox video edits, we start at competitive rates. Contact us on Discord (@ZyroVisual) or email (zyrovisual158@gmail.com) for a custom quote! 💰";
+            } else if (message.includes('turnaround') || message.includes('time') || message.includes('fast')) {
+                return "We offer lightning-fast 24-48 hour turnaround time without compromising quality! ⚡ Need it urgently? We can discuss rush delivery options.";
+            } else if (message.includes('portfolio') || message.includes('work') || message.includes('examples')) {
+                scrollToSection('portfolio');
+                return "Check out our portfolio section above! 🎬 We've worked with amazing creators like Waffy, Snappy, Ayeyahzee, and more. Scroll up to see the videos!";
+            } else if (message.includes('contact') || message.includes('reach') || message.includes('talk')) {
+                return "You can reach us through:\n💬 Discord: @ZyroVisual\n📧 Email: zyrovisual158@gmail.com\n🐦 Twitter/X: @ZyroVisual\n\nWe typically respond within a few hours!";
+            } else if (message.includes('revision') || message.includes('changes')) {
+                return "We offer unlimited revisions until you're 100% satisfied! 🤝 Your vision is our priority.";
+            } else if (message.includes('roblox')) {
+                return "Yes! We specialize exclusively in Roblox video editing. 🎮 Every cut, effect, and transition is tailored for Roblox content to maximize engagement!";
+            } else {
+                return "That's a great question! For detailed information, feel free to reach out to us on Discord (@ZyroVisual) or email (zyrovisual158@gmail.com). We're here to help! 😊";
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chatbot-message ${sender}`;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Glitch effect on hero title
+        setInterval(() => {
+            const heroTitle = document.querySelector('.hero-title');
+            heroTitle.classList.add('glitch');
+            setTimeout(() => {
+                heroTitle.classList.remove('glitch');
+            }, 500);
+        }, 5000);
+
+        // Enhanced floating elements animation
+        document.querySelectorAll('.floating-element').forEach((element, index) => {
+            element.style.animationDelay = `${index * 2}s`;
         });
     </script>
 </body>
