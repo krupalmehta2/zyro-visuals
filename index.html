@@ -234,25 +234,42 @@
             padding-top: 80px;
         }
 
-        .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
+.hero-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
 
-        .hero-video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+.youtube-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+    /* Ensure proper aspect ratio and coverage */
+    min-width: 100%;
+    min-height: 100%;
+}
+
+/* Remove the old video styles and replace with iframe styles */
+.hero-video-container iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
 
         .hero-overlay {
             position: absolute;
@@ -1479,22 +1496,27 @@
         </ul>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-video-container">
-            <video id="heroVideo" muted loop playsinline>
-                <source src="hero-video.mp4" type="video/mp4">
-            </video>
+<section class="hero" id="home">
+    <div class="hero-video-container">
+        <!-- YouTube Video Embed -->
+        <iframe 
+            src="https://www.youtube.com/embed/DwBQV77HpV0?autoplay=1&mute=1&loop=1&playlist=DwBQV77HpV0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1" 
+            frameborder="0" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen
+            class="youtube-background"
+        ></iframe>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title glitch-text" data-text="Zyro Visuals">Zyro Visuals</h1>
+        <p class="hero-subtitle"></p>
+        <div class="hero-cta">
+            <button class="btn-primary" onclick="scrollToSection('portfolio')">View Portfolio</button>
+            <button class="btn-secondary" onclick="scrollToSection('contact')">Hire Me</button>
         </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title glitch-text" data-text="Zyro Visuals">Zyro Visuals</h1>
-            <p class="hero-subtitle"></p>
-            <div class="hero-cta">
-                <button class="btn-primary" onclick="scrollToSection('portfolio')">View Portfolio</button>
-                <button class="btn-secondary" onclick="scrollToSection('contact')">Hire Me</button>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
     <section class="intro" id="intro">
         <div class="intro-container">
