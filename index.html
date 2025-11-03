@@ -131,8 +131,7 @@
             border: 1px solid rgba(180, 124, 255, 0.25);
             border-radius: 50px;
             transition: all 0.3s;
-            max-width: 1200px;
-            width: 80%;
+            width: 85%;
         }
 
         .header-nav.scrolled {
@@ -185,6 +184,7 @@
             gap: 35px;
             list-style: none;
             align-items: center;
+            margin: auto;
         }
 
         .nav-links a {
@@ -537,7 +537,7 @@
             margin: 0 auto;
         }
 
-        .portfolio-grid {
+.portfolio-grid {
             max-width: 1300px;
             margin: 0 auto;
             display: flex;
@@ -555,6 +555,19 @@
             padding: 40px;
             border: 1px solid rgba(180, 124, 255, 0.2);
             transition: all 0.5s;
+        }
+
+        /* Alternate layout for even items */
+        .portfolio-item:nth-child(even) {
+            grid-template-columns: 1fr 1.4fr;
+        }
+
+        .portfolio-item:nth-child(even) .portfolio-video {
+            order: 2;
+        }
+
+        .portfolio-item:nth-child(even) .portfolio-info {
+            order: 1;
         }
 
         .portfolio-item:hover {
@@ -606,7 +619,6 @@
             line-height: 1.8;
             font-style: italic;
         }
-
         /* Why Choose Section - Smooth hover like Contact */
         .why-choose {
             padding: 120px 60px;
@@ -1062,8 +1074,7 @@
             </div>
         </div>
     </section>
-
-    <section class="portfolio" id="portfolio">
+<section class="portfolio" id="portfolio">
         <div class="section-header">
             <h2 class="section-title">Portfolio</h2>
             <p class="section-subtitle">Check out some of my best work</p>
