@@ -33,7 +33,6 @@
 
         html { scroll-behavior: smooth; }
 
-        /* Particles Canvas */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -44,7 +43,6 @@
             pointer-events: none;
         }
 
-        /* Matrix Rain */
         .matrix-rain {
             position: fixed;
             top: 0;
@@ -56,7 +54,6 @@
             opacity: 0.15;
         }
 
-        /* Custom Cursor */
         .cursor {
             position: fixed;
             width: 20px;
@@ -96,7 +93,6 @@
             background: radial-gradient(circle, rgba(0, 217, 255, 0.2), transparent);
         }
 
-        /* Progress Bar */
         .progress-bar {
             position: fixed;
             top: 0;
@@ -115,7 +111,6 @@
             50% { box-shadow: 0 0 17px rgba(0, 217, 255, 0.5), 0 0 35px rgba(180, 124, 255, 0.4); }
         }
 
-        /* Navbar */
         .header-nav {
             position: fixed;
             top: 20px;
@@ -241,54 +236,48 @@
             box-shadow: 0 5px 20px rgba(0, 217, 255, 0.3);
         }
 
-        /* Hero Section */
-.hero {
-    height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 100px 60px 80px 60px;
-}
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 100px 60px 60px 60px;
+        }
 
-.hero-video-container {
-    position: absolute;
-    top: 100px;
-    left: 60px;
-    right: 60px;
-    bottom: 80px;
-    overflow: hidden;
-    z-index: 0;
-    border-radius: 30px;
-}
+        .hero-video-container {
+            position: absolute;
+            top: 100px;
+            left: 60px;
+            right: 60px;
+            bottom: 60px;
+            overflow: hidden;
+            z-index: 0;
+            border-radius: 30px;
+        }
 
-.hero-video-container iframe {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    pointer-events: none;
-    border-radius: 30px;
-}
-
-        .hero-video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.6);
+        .hero-video-container iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw;
+            min-height: 100vh;
+            min-width: 177.77vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
         .hero-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 100px;
+            left: 60px;
+            right: 60px;
+            bottom: 60px;
             background: linear-gradient(135deg, rgba(180, 124, 255, 0.2), rgba(0, 217, 255, 0.15));
             z-index: 1;
+            border-radius: 30px;
         }
 
         .hero-overlay::before {
@@ -300,6 +289,7 @@
             height: 100%;
             background: rgba(5, 5, 16, 0.5);
             z-index: 1;
+            border-radius: 30px;
         }
 
         .hero-content {
@@ -388,7 +378,6 @@
             color: var(--dark-bg);
         }
 
-        /* Intro Section */
         .intro {
             padding: 120px 60px;
             background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
@@ -398,10 +387,63 @@
         .intro-container {
             max-width: 1300px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+        }
+
+        .intro-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .intro-image-container {
+            width: 300px;
+            min-width: 300px;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            border-radius: 25px;
+            border: 2px solid rgba(180, 124, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.2);
+            transition: all 0.5s;
+            position: relative;
+        }
+
+        .intro-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(180, 124, 255, 0.2), rgba(0, 217, 255, 0.1));
+            z-index: 1;
+            transition: opacity 0.5s;
+        }
+
+        .intro-image-container:hover::before {
+            opacity: 0;
+        }
+
+        .intro-image-container:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 30px 80px rgba(0, 217, 255, 0.3);
+        }
+
+        .intro-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s;
+        }
+
+        .intro-image-container:hover .intro-image {
+            transform: scale(1.05);
+        }
+
+        .intro-text {
+            flex: 1;
         }
 
         .intro-text h2 {
@@ -427,11 +469,17 @@
             font-weight: 600;
         }
 
+        .intro-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-cyan), transparent);
+            margin: 50px 0;
+            opacity: 0.5;
+        }
+
         .intro-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 25px;
-            margin-top: 40px;
         }
 
         .stat-box {
@@ -512,7 +560,6 @@
             100% { left: 120%; }
         }
 
-        /* Portfolio Section */
         .portfolio {
             padding: 120px 60px;
             background: var(--dark-bg);
@@ -631,7 +678,6 @@
             font-style: italic;
         }
 
-        /* Why Choose Section */
         .why-choose {
             padding: 120px 60px;
             background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
@@ -715,7 +761,6 @@
             z-index: 1;
         }
 
-        /* Comparison Section */
         .comparison {
             padding: 120px 60px;
             background: var(--dark-bg);
@@ -779,7 +824,6 @@
             color: var(--neon-cyan);
         }
 
-        /* Contact Section */
         .contact {
             padding: 120px 60px;
             background: var(--dark-bg);
@@ -941,10 +985,35 @@
         }
 
         @media (max-width: 1200px) {
-            .intro-container { grid-template-columns: 1fr; }
-            .portfolio-item { grid-template-columns: 1fr; }
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .social-icons { display: none; }
+            .intro-header { 
+                flex-direction: column; 
+                align-items: center;
+            }
+            .intro-image-container {
+                width: 100%;
+                max-width: 400px;
+            }
+            .intro-stats { 
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            .portfolio-item { 
+                grid-template-columns: 1fr; 
+            }
+            .portfolio-item:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-item:nth-child(even) .portfolio-video {
+                order: 1;
+            }
+            .portfolio-item:nth-child(even) .portfolio-info {
+                order: 2;
+            }
+            .features-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            .social-icons { 
+                display: none; 
+            }
         }
 
         @media (max-width: 768px) {
@@ -980,13 +1049,39 @@
             .hero { height: 100vh; }
             .hero-title { font-size: 2.8rem; }
             .hero-subtitle { font-size: 1.3rem; }
-            .portfolio-grid, .features-grid, .social-grid { grid-template-columns: 1fr; }
-            .header-nav { width: 95%; padding: 12px 20px; }
-            .intro, .portfolio, .why-choose, .contact { padding: 80px 25px; }
-            .intro-container { gap: 40px; }
-            .section-title { font-size: 2.3rem; }
-            .intro-text h2 { font-size: 2.2rem; }
-            .logo-text { font-size: 1rem; }
+            .portfolio-grid, .features-grid, .social-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .header-nav { 
+                width: 95%; 
+                padding: 12px 20px; 
+            }
+            .intro, .portfolio, .why-choose, .contact { 
+                padding: 80px 25px; 
+            }
+            .intro-stats {
+                grid-template-columns: 1fr;
+            }
+            .section-title { 
+                font-size: 2.3rem; 
+            }
+            .intro-text h2 { 
+                font-size: 2.2rem; 
+            }
+            .logo-text { 
+                font-size: 1rem; 
+            }
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+            .comparison-header div {
+                font-size: 1.1rem;
+                padding: 20px 15px;
+            }
+            .comparison-row div {
+                padding: 18px 15px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -1032,34 +1127,42 @@
         </button>
     </nav>
 
-<section class="hero" id="home">
-    <div class="hero-video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/DwBQV77HpV0?autoplay=1&mute=1&loop=1&playlist=DwBQV77HpV0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1&enablejsapi=1" 
-            frameborder="0" 
-            allow="autoplay; encrypted-media" 
-            allowfullscreen
-        ></iframe>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">Zyro Visuals</h1>
-        <p class="hero-subtitle" id="heroSubtitle"></p>
-        <div class="hero-cta">
-            <button class="btn-primary" onclick="scrollToSection('portfolio')">View Portfolio</button>
-            <button class="btn-secondary" onclick="scrollToSection('contact')">Hire Me</button>
+    <section class="hero" id="home">
+        <div class="hero-video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/DwBQV77HpV0?autoplay=1&mute=1&loop=1&playlist=DwBQV77HpV0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen
+            ></iframe>
         </div>
-    </div>
-</section>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Zyro Visuals</h1>
+            <p class="hero-subtitle" id="heroSubtitle"></p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="scrollToSection('portfolio')">View Portfolio</button>
+                <button class="btn-secondary" onclick="scrollToSection('contact')">Hire Me</button>
+            </div>
+        </div>
+    </section>
 
     <section class="intro" id="intro">
         <div class="intro-container">
-            <div class="intro-text">
-                <h2>Professional Roblox Video Editor</h2>
-                <p>Hello! I hope you're doing great.</p>
-                <p>My name is <span class="intro-highlight">Anshul Kurmi</span>, and I'm from India. I run <span class="intro-highlight">Zyro Visuals</span>, a creative video editing agency with over 1 year of experience in delivering professional content and a team of skilled editors with 3+ years of expertise.</p>
-                <p>We specialize in editing <span class="intro-highlight">Roblox videos</span>, turning raw gameplay into cinematic, story-driven edits that grab attention and keep viewers watching till the end.</p>
+            <div class="intro-header">
+                <div class="intro-image-container">
+                    <img src="final image.jpg" alt="Anshul Kurmi" class="intro-image">
+                </div>
+                <div class="intro-text">
+                    <h2>Professional Roblox Video Editor</h2>
+                    <p>Hello! I hope you're doing great.</p>
+                    <p>My name is <span class="intro-highlight">Anshul Kurmi</span>, and I'm from India. I run <span class="intro-highlight">Zyro Visuals</span>, a creative video editing agency with over 1 year of experience in delivering professional content and a team of skilled editors with 3+ years of expertise.</p>
+                    <p>We specialize in editing <span class="intro-highlight">Roblox videos</span>, turning raw gameplay into cinematic, story-driven edits that grab attention and keep viewers watching till the end.</p>
+                </div>
             </div>
+
+            <div class="intro-divider"></div>
+
             <div class="intro-stats">
                 <div class="stat-box hologram-effect">
                     <div class="stat-number">250+</div>
@@ -1178,49 +1281,50 @@
         </div>
     </section>
 
-    <section class="comparison" id="comparison">
-        <div class="section-header">
-            <h2 class="section-title">Freelancer vs Agency</h2>
-            <p class="section-subtitle">See why choosing Zyro Visuals means choosing reliability and quality</p>
+<section class="comparison" id="comparison" style="padding:60px 20px; text-align:center; font-family:'Poppins', sans-serif;">
+    <div class="section-header" style="margin-bottom:40px;">
+        <h2 class="section-title" style="font-size:2rem; font-weight:600; margin-bottom:10px;">Freelancer vs Agency</h2>
+        <p class="section-subtitle" style="font-size:1rem; font-weight:400;">See why choosing Zyro Visuals means choosing reliability and quality</p>
+    </div>
+    <div class="comparison-table" style="max-width:900px; margin:0 auto; border-collapse:collapse; width:100%; display:table;">
+        <div class="comparison-header" style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:2px solid #aaa; padding:15px 10px; align-items:center; font-weight:600;">
+            <div>Features</div>
+            <div>Freelancer</div>
+            <div>Zyro Visuals</div>
         </div>
-        <div class="comparison-table">
-            <div class="comparison-header">
-                <div>Features</div>
-                <div>Freelancer</div>
-                <div>Zyro Visuals</div>
-            </div>
-            <div class="comparison-row">
-                <div>Team Power</div>
-                <div>Works alone</div>
-                <div>Full team support</div>
-            </div>
-            <div class="comparison-row">
-                <div>Delivery Time</div>
-                <div>Delays if unavailable</div>
-                <div>Always on time</div>
-            </div>
-            <div class="comparison-row">
-                <div>Quality Check</div>
-                <div>Single vision</div>
-                <div>Multiple editors review</div>
-            </div>
-            <div class="comparison-row">
-                <div>Reliability</div>
-                <div>One issue = delay</div>
-                <div>Zero downtime</div>
-            </div>
-            <div class="comparison-row">
-                <div>Support</div>
-                <div>Limited response</div>
-                <div>24/7 dedicated support</div>
-            </div>
-            <div class="comparison-row">
-                <div>Revisions</div>
-                <div>Extra cost</div>
-                <div>Unlimited</div>
-            </div>
+        <div class="comparison-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #ddd; padding:15px 10px; align-items:center;">
+            <div>Team Power</div>
+            <div>Works alone</div>
+            <div>Full team support</div>
         </div>
-    </section>
+        <div class="comparison-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #ddd; padding:15px 10px; align-items:center;">
+            <div>Delivery Time</div>
+            <div>Delays if unavailable</div>
+            <div>Always on time</div>
+        </div>
+        <div class="comparison-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #ddd; padding:15px 10px; align-items:center;">
+            <div>Quality Check</div>
+            <div>Single vision</div>
+            <div>Multiple editors review</div>
+        </div>
+        <div class="comparison-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #ddd; padding:15px 10px; align-items:center;">
+            <div>Reliability</div>
+            <div>One issue = delay</div>
+            <div>Zero downtime</div>
+        </div>
+        <div class="comparison-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #ddd; padding:15px 10px; align-items:center;">
+            <div>Support</div>
+            <div>Limited response</div>
+            <div>24/7 dedicated support</div>
+        </div>
+        <div class="comparison-row" style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:15px 10px; align-items:center;">
+            <div>Revisions</div>
+            <div>Extra cost</div>
+            <div>Unlimited</div>
+        </div>
+    </div>
+</section>
+
 
     <section class="contact" id="contact">
         <div class="section-header">
