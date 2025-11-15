@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zyro Visuals | Professional Roblox Video Editor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&family=Roboto:wght@400;700;900&display=swap');
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,8 +23,8 @@
     }
 
     body {
-        font-family: 'Roboto', sans-serif; /* Changed to Orbitron */
-        font-weight: 400; /* Regular weight for body */
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
         background: var(--dark-bg);
         color: var(--text-primary);
         overflow-x: hidden;
@@ -39,19 +39,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 0;
+        z-index: 1;
         pointer-events: none;
-    }
-
-    .matrix-rain {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        pointer-events: none;
-        opacity: 0.15;
     }
 
     .cursor {
@@ -127,6 +116,44 @@
         border-radius: 12px;
         transition: all 0.3s;
         width: 85%;
+        overflow: hidden;
+    }
+
+    .header-nav::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(180, 124, 255, 0.03) 2px, rgba(180, 124, 255, 0.03) 4px),
+            repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 217, 255, 0.03) 2px, rgba(0, 217, 255, 0.03) 4px);
+        z-index: -1;
+        opacity: 0.5;
+    }
+
+    .header-nav::after {
+        content: '▶ ROBLOX ◆ GAMING ◆ EDITOR ◆ CREATIVE ◆ VISUALS ◆ MONTAGE ◆ ROBLOX ◆ GAMING ◆ EDITOR ◆ CREATIVE ◆ VISUALS ◆ MONTAGE ◆';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 300%;
+        font-family: 'Orbitron', monospace;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: rgba(180, 124, 255, 0.08);
+        letter-spacing: 3px;
+        z-index: -1;
+        white-space: nowrap;
+        animation: scrollText 40s linear infinite;
+        text-transform: uppercase;
+    }
+
+    @keyframes scrollText {
+        0% { transform: translateY(-50%) translateX(0); }
+        100% { transform: translateY(-50%) translateX(-33.33%); }
     }
 
     .header-nav.scrolled {
@@ -141,6 +168,8 @@
         gap: 12px;
         cursor: pointer;
         transition: all 0.3s;
+        position: relative;
+        z-index: 2;
     }
 
     .logo:hover {
@@ -169,6 +198,8 @@
         list-style: none;
         align-items: center;
         margin: auto;
+        position: relative;
+        z-index: 2;
     }
 
     .nav-links a {
@@ -203,6 +234,8 @@
         border-left: 1px solid rgba(180, 124, 255, 0.2);
         padding-left: 20px;
         margin-left: 15px;
+        position: relative;
+        z-index: 2;
     }
 
     .social-icon-link {
@@ -234,6 +267,19 @@
         justify-content: center;
         overflow: hidden;
         padding: 100px 60px 60px 60px;
+    }
+
+    .neon-grid {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image:
+            linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(180, 124, 255, 0.05) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+        opacity: 0.3;
+        z-index: 0;
     }
 
     .hero-video-container {
@@ -308,7 +354,7 @@
     }
 
     .hero-subtitle {
-        font-family: 'Roboto', sans-serif; /* Changed to Orbitron */
+        font-family: 'Roboto', sans-serif;
         font-size: 1.6rem;
         color: var(--text-secondary);
         margin-bottom: 40px;
@@ -416,7 +462,7 @@
     }
 
     .intro-text h2 {
-        font-family: 'Orbitron', sans-serif; /* Changed to Orbitron */
+        font-family: 'Orbitron', sans-serif;
         font-size: 3rem;
         font-weight: 700;
         margin-bottom: 25px;
@@ -438,9 +484,135 @@
         font-weight: 600;
     }
 
-    .portfolio {
+    .work-process-section {
         padding: 120px 60px;
         background: var(--dark-bg);
+        position: relative;
+    }
+
+    .work-process-container {
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+
+    .work-process-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .work-video-wrapper {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        border: 2px solid rgba(0, 0, 0, 0.8);
+        transition: all 0.3s;
+    }
+
+    .work-video-wrapper:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 217, 255, 0.3);
+        border-color: var(--neon-cyan);
+    }
+
+    .work-video-wrapper iframe {
+        width: 100%;
+        height: 350px;
+        border: none;
+        display: block;
+    }
+
+    .marquee-container {
+        margin-top: 60px;
+        overflow: hidden;
+        background: var(--dark-card);
+        padding: 30px 0;
+        border-radius: 20px;
+        border: 1px solid rgba(180, 124, 255, 0.2);
+        position: relative;
+    }
+
+    .marquee-container::before,
+    .marquee-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 150px;
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .marquee-container::before {
+        left: 0;
+        background: linear-gradient(to right, var(--dark-card) 0%, transparent 100%);
+    }
+
+    .marquee-container::after {
+        right: 0;
+        background: linear-gradient(to left, var(--dark-card) 0%, transparent 100%);
+    }
+
+    .marquee-track {
+        display: flex;
+        gap: 30px;
+        animation: marqueeScroll 30s linear infinite;
+    }
+
+    @keyframes marqueeScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+        flex-shrink: 0;
+        width: 200px;
+        height: 220px;
+        background: var(--dark-bg);
+        border-radius: 20px;
+        border: 2px solid rgba(180, 124, 255, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        gap: 15px;
+        transition: all 0.3s;
+    }
+
+    .marquee-item:hover {
+        border-color: var(--neon-cyan);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+    }
+
+    .marquee-item img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgba(0, 217, 255, 0.4);
+    }
+
+    .marquee-item-name {
+        font-size: 1.1rem;
+        color: var(--neon-cyan);
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .marquee-item-subs {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .portfolio {
+        padding: 120px 60px;
+        background: linear-gradient(180deg, var(--dark-card) 0%, var(--dark-bg) 100%);
         position: relative;
     }
 
@@ -450,7 +622,7 @@
     }
 
     .section-title {
-        font-family: 'Orbitron', sans-serif; /* Changed to Orbitron */
+        font-family: 'Orbitron', sans-serif;
         font-size: 3.5rem;
         font-weight: 700;
         background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan));
@@ -480,13 +652,8 @@
     .portfolio-item {
         display: grid;
         grid-template-columns: 1.4fr 1fr;
-        gap: 50px;
+        gap: 40px;
         align-items: center;
-        background: var(--dark-card);
-        border-radius: 25px;
-        padding: 40px;
-        border: 1px solid rgba(180, 124, 255, 0.2);
-        transition: all 0.5s;
     }
 
     .portfolio-item:nth-child(even) {
@@ -501,23 +668,21 @@
         order: 1;
     }
 
-    .portfolio-item:hover {
-        transform: translateY(-8px);
-        border-color: var(--neon-cyan);
-        box-shadow: 0 25px 70px rgba(0, 217, 255, 0.2);
-    }
-
     .portfolio-video {
         aspect-ratio: 16/9;
         overflow: hidden;
-        border-radius: 18px;
+        border-radius: 20px;
         position: relative;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        transition: all 0.3s;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        border: 2px solid rgba(0, 0, 0, 0.8);
+        transition: all 0.5s;
+        background: var(--dark-card);
     }
 
-    .portfolio-item:hover .portfolio-video {
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    .portfolio-video:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        border-color: var(--neon-cyan);
     }
 
     .portfolio-video img {
@@ -532,43 +697,33 @@
     }
 
     .portfolio-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        background: var(--dark-card);
+        padding: 35px;
+        border-radius: 20px;
+        border: 2px solid rgba(0, 0, 0, 0.8);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        transition: all 0.5s;
     }
 
-    .portfolio-info h3 {
-        font-family: 'Roboto', sans-serif; /* Changed to Orbitron */
-        font-size: 2rem;
-        color: var(--neon-cyan);
-        margin-bottom: 18px;
-        transition: all 0.3s;
-        font-weight: 700;
-    }
-
-    .portfolio-item:hover .portfolio-info h3 {
-        text-shadow: 0 0 20px rgba(0, 217, 255, 0.6);
-    }
-
-    .portfolio-info p {
-        color: var(--text-secondary);
-        font-size: 1.15rem;
-        line-height: 1.8;
-
+    .portfolio-info:hover {
+        transform: translateY(-8px);
+        border-color: var(--neon-purple);
+        box-shadow: 0 15px 40px rgba(180, 124, 255, 0.3);
     }
 
     .creator-info {
         display: flex;
         align-items: center;
-        margin-top: 15px;
-        gap: 10px;
+        margin-bottom: 20px;
+        gap: 12px;
     }
 
     .creator-logo {
-        width: 40px;
-        height: 40px;
+        width: 55px;
+        height: 55px;
         border-radius: 50%;
         object-fit: cover;
+        border: 2px solid rgba(0, 217, 255, 0.4);
     }
 
     .creator-details {
@@ -577,15 +732,26 @@
     }
 
     .creator-name {
-        font-family: 'Roboto', sans-serif; /* KEPT as Roboto */
+        font-family: 'Roboto', sans-serif;
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
+        color: #00d9ff;
+        margin-bottom: 3px;
     }
 
     .creator-subscribers {
-        font-family: 'Roboto', sans-serif; /* Added Roboto for subscribers */
-        font-size: 0.9rem;
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .portfolio-info p {
         color: var(--text-secondary);
+        font-size: 1.1rem;
+        line-height: 1.7;
+        font-style: italic;
+        margin: 0;
     }
 
     .stats-section {
@@ -747,7 +913,7 @@
     }
 
     .feature-card h3 {
-        font-family: 'Orbitron', sans-serif; /* Changed to Orbitron */
+        font-family: 'Orbitron', sans-serif;
         font-size: 1.6rem;
         margin-bottom: 18px;
         color: var(--neon-cyan);
@@ -764,73 +930,9 @@
         z-index: 1;
     }
 
-    .video-section {
-        padding: 120px 60px;
-        background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
-        position: relative;
-    }
-
-    .video-container {
-        max-width: 1300px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-    }
-
-    .video-wrapper {
-        position: relative;
-        border-radius: 25px;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .video-wrapper iframe {
-        width: 100%;
-        height: 400px;
-        border: none;
-        display: block;
-    }
-
-    .video-caption {
-        padding: 30px;
-        background: var(--dark-card);
-        border-radius: 25px;
-        border: 1px solid rgba(180, 124, 255, 0.2);
-    }
-
-    .video-caption h3 {
-        font-family: 'Orbitron', sans-serif; /* Changed to Orbitron */
-        font-size: 2rem;
-        margin-bottom: 20px;
-        color: var(--neon-cyan);
-        font-weight: 700;
-    }
-
-    .typewriter-text {
-        font-size: 1.2rem;
-        line-height: 1.8;
-        color: var(--text-secondary);
-        min-height: 200px;
-    }
-
-    .typewriter-cursor {
-        display: inline-block;
-        width: 3px;
-        background-color: var(--neon-cyan);
-        margin-left: 2px;
-        animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
-
     .contact {
         padding: 120px 60px;
-        background: var(--dark-bg);
+        background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
         position: relative;
     }
 
@@ -897,7 +999,7 @@
     }
 
     .social-card h3 {
-        font-family: 'Orbitron', sans-serif; /* Changed to Orbitron */
+        font-family: 'Orbitron', sans-serif;
         font-size: 1.4rem;
         margin-bottom: 12px;
         color: var(--neon-cyan);
@@ -938,6 +1040,8 @@
         background: transparent;
         border: none;
         cursor: pointer;
+        position: relative;
+        z-index: 2;
     }
 
     .mobile-menu-toggle span {
@@ -972,7 +1076,7 @@
         top: 0;
         left: 0;
         pointer-events: none;
-        z-index: 1;
+        z-index: 2;
     }
 
     .floating-element {
@@ -1016,7 +1120,7 @@
         .features-grid { 
             grid-template-columns: repeat(2, 1fr); 
         }
-        .video-container {
+        .work-process-content {
             grid-template-columns: 1fr;
         }
         .social-icons { 
@@ -1064,7 +1168,7 @@
             width: 95%; 
             padding: 12px 20px; 
         }
-        .intro, .portfolio, .why-choose, .contact, .stats-section, .video-section { 
+        .intro, .portfolio, .why-choose, .contact, .stats-section, .work-process-section { 
             padding: 80px 25px; 
         }
         .intro-stats {
@@ -1084,8 +1188,6 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <div class="progress-bar" id="progressBar"></div>
-    
-    <canvas class="matrix-rain" id="matrixRain"></canvas>
 
     <div class="floating-elements">
         <div class="floating-element" style="top: 10%; left: 5%; font-size: 2rem;">🎮</div>
@@ -1103,8 +1205,8 @@
         <ul class="nav-links" id="navLinks" style="flex: 2; display: flex; justify-content: center; align-items: center; list-style: none; gap: 25px; margin: 0; padding: 0;">
             <li><a href="#home">Home</a></li>
             <li><a href="#intro">About</a></li>
+            <li><a href="#work">Process</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#video">Video</a></li>
             <li><a href="#why">Why Us</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1123,6 +1225,7 @@
     </nav>
 
     <section class="hero" id="home">
+        <div class="neon-grid"></div>
         <div class="hero-video-container">
             <iframe 
                 src="https://www.youtube.com/embed/DwBQV77HpV0?autoplay=1&mute=1&loop=1&playlist=DwBQV77HpV0&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1" 
@@ -1162,93 +1265,174 @@
         </div>
     </section>
 
-<section class="portfolio" id="portfolio">
-    <div class="section-header">
-        <h2 class="section-title">Portfolio</h2>
-        <p class="section-subtitle">Check out some of my best work</p>
-    </div>
-    <div class="portfolio-grid">
-        <div class="portfolio-item">
-            <a href="https://www.youtube.com/watch?v=frgVAY6kWJA" target="_blank" class="portfolio-video">
-                <img src="https://img.youtube.com/vi/frgVAY6kWJA/hqdefault.jpg" alt="Waffy Thumbnail" loading="lazy">
-            </a>
-            <div class="portfolio-info">
-                <div class="creator-info" style="margin-bottom: 15px;">
-                    <img src="waffy.jpg" alt="Waffy Logo" class="creator-logo" style="width: 55px; height: 55px; border: 2px solid rgba(0, 217, 255, 0.4);">
-                    <div class="creator-details">
-                        <div class="creator-name" style="font-size: 1.3rem; color: #00d9ff; font-weight: 700; margin-bottom: 3px;">Waffy</div>
-                        <div class="creator-subscribers" style="font-size: 1rem; color: #ffffff; font-weight: 600;">2.25K Subscribers</div>
-                    </div>
-                </div>
-                <p style="font-style: italic; margin: 0; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7;">This turned out way better than I imagined! Great work Zyro</p>
-            </div>
+    <section class="work-process-section" id="work">
+        <div class="section-header">
+            <h2 class="section-title">Our Work Process</h2>
+            <p class="section-subtitle">See how we transform raw footage into engaging content</p>
         </div>
+        <div class="work-process-container">
+            <div class="work-process-content">
+                <div class="work-video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/Yy6VQisd9Ew?autoplay=1&mute=1" 
+                        allow="autoplay; encrypted-media" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="work-video-wrapper">
+                    <iframe 
+                        src="https://www.youtube.com/embed/DwBQV77HpV0?autoplay=1&mute=1" 
+                        allow="autoplay; encrypted-media" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
 
-        <div class="portfolio-item">
-            <a href="https://www.youtube.com/watch?v=sdHAfffZzsw" target="_blank" class="portfolio-video">
-                <img src="https://img.youtube.com/vi/sdHAfffZzsw/hqdefault.jpg" alt="Snappy Thumbnail" loading="lazy">
-            </a>
-            <div class="portfolio-info">
-                <div class="creator-info" style="margin-bottom: 15px;">
-                    <img src="snappy.jpg" alt="Snappy Logo" class="creator-logo" style="width: 55px; height: 55px; border: 2px solid rgba(0, 217, 255, 0.4);">
-                    <div class="creator-details">
-                        <div class="creator-name" style="font-size: 1.3rem; color: #00d9ff; font-weight: 700; margin-bottom: 3px;">Snappy</div>
-                        <div class="creator-subscribers" style="font-size: 1rem; color: #ffffff; font-weight: 600;">184K Subscribers</div>
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <div class="marquee-item">
+                        <img src="waffy.jpg" alt="Waffy">
+                        <div class="marquee-item-name">Waffy</div>
+                        <div class="marquee-item-subs">2.25K Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="snappy.jpg" alt="Snappy">
+                        <div class="marquee-item-name">Snappy</div>
+                        <div class="marquee-item-subs">184K Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="ayeyahzee.jpg" alt="AyeYahZee">
+                        <div class="marquee-item-name">AyeYahZee</div>
+                        <div class="marquee-item-subs">2.08M Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="Daniela.jpg" alt="Daniela">
+                        <div class="marquee-item-name">Daniela</div>
+                        <div class="marquee-item-subs">286K Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="snappy.jpg" alt="Valekis">
+                        <div class="marquee-item-name">Valekis</div>
+                        <div class="marquee-item-subs">562K Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="waffy.jpg" alt="Waffy">
+                        <div class="marquee-item-name">Waffy</div>
+                        <div class="marquee-item-subs">2.25K Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="snappy.jpg" alt="Snappy">
+                        <div class="marquee-item-name">Snappy</div>
+                        <div class="marquee-item-subs">184K Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="ayeyahzee.jpg" alt="AyeYahZee">
+                        <div class="marquee-item-name">AyeYahZee</div>
+                        <div class="marquee-item-subs">2.08M Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="Daniela.jpg" alt="Daniela">
+                        <div class="marquee-item-name">Daniela</div>
+                        <div class="marquee-item-subs">286K Subscribers</div>
+                    </div>
+                    <div class="marquee-item">
+                        <img src="Valekis.jpg" alt="Valekis">
+                        <div class="marquee-item-name">Valekis</div>
+                        <div class="marquee-item-subs">562K Subscribers</div>
                     </div>
                 </div>
-                <p style="font-style: italic; margin: 0; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7;">Man this edit turned out so good!! You seriously make it too easy to work with you.</p>
             </div>
         </div>
+    </section>
 
-        <div class="portfolio-item">
-            <a href="https://www.youtube.com/watch?v=X2-vch4Ae_8" target="_blank" class="portfolio-video">
-                <img src="https://img.youtube.com/vi/X2-vch4Ae_8/hqdefault.jpg" alt="Ayeyahzee Thumbnail" loading="lazy">
-            </a>
-            <div class="portfolio-info">
-                <div class="creator-info" style="margin-bottom: 15px;">
-                    <img src="ayeyahzee.jpg" alt="AyeYahZee Logo" class="creator-logo" style="width: 55px; height: 55px; border: 2px solid rgba(0, 217, 255, 0.4);">
-                    <div class="creator-details">
-                        <div class="creator-name" style="font-size: 1.3rem; color: #00d9ff; font-weight: 700; margin-bottom: 3px;">AyeYahZee</div>
-                        <div class="creator-subscribers" style="font-size: 1rem; color: #ffffff; font-weight: 600;">2.08M Subscribers</div>
-                    </div>
-                </div>
-                <p style="font-style: italic; margin: 0; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7;">Zyro's super supportive he literally helped me bring my dead views back thanks a lot bro 😭</p>
-            </div>
+    <section class="portfolio" id="portfolio">
+        <div class="section-header">
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-subtitle">Check out some of my best work</p>
         </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <a href="https://www.youtube.com/watch?v=frgVAY6kWJA" target="_blank" class="portfolio-video">
+                    <img src="https://img.youtube.com/vi/frgVAY6kWJA/hqdefault.jpg" alt="Waffy Thumbnail" loading="lazy">
+                </a>
+                <div class="portfolio-info">
+                    <div class="creator-info">
+                        <img src="waffy.jpg" alt="Waffy Logo" class="creator-logo">
+                        <div class="creator-details">
+                            <div class="creator-name">Waffy</div>
+                            <div class="creator-subscribers">2.25K Subscribers</div>
+                        </div>
+                    </div>
+                    <p>This turned out way better than I imagined! Great work Zyro</p>
+                </div>
+            </div>
 
-        <div class="portfolio-item">
-            <a href="https://www.youtube.com/watch?v=RACl1AG_rU0" target="_blank" class="portfolio-video">
-                <img src="https://img.youtube.com/vi/RACl1AG_rU0/hqdefault.jpg" alt="Valekis Thumbnail" loading="lazy">
-            </a>
-            <div class="portfolio-info">
-                <div class="creator-info" style="margin-bottom: 15px;">
-                    <img src="snappy.jpg" alt="Valekis Logo" class="creator-logo" style="width: 55px; height: 55px; border: 2px solid rgba(0, 217, 255, 0.4);">
-                    <div class="creator-details">
-                        <div class="creator-name" style="font-size: 1.3rem; color: #00d9ff; font-weight: 700; margin-bottom: 3px;">Valekis</div>
-                        <div class="creator-subscribers" style="font-size: 1rem; color: #ffffff; font-weight: 600;">562K Subscribers</div>
+            <div class="portfolio-item">
+                <a href="https://www.youtube.com/watch?v=sdHAfffZzsw" target="_blank" class="portfolio-video">
+                    <img src="https://img.youtube.com/vi/sdHAfffZzsw/hqdefault.jpg" alt="Snappy Thumbnail" loading="lazy">
+                </a>
+                <div class="portfolio-info">
+                    <div class="creator-info">
+                        <img src="snappy.jpg" alt="Snappy Logo" class="creator-logo">
+                        <div class="creator-details">
+                            <div class="creator-name">Snappy</div>
+                            <div class="creator-subscribers">184K Subscribers</div>
+                        </div>
                     </div>
+                    <p>Man this edit turned out so good!! You seriously make it too easy to work with you.</p>
                 </div>
-                <p style="font-style: italic; margin: 0; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7;">Bro this intro is amazing.</p>
             </div>
-        </div>
 
-        <div class="portfolio-item">
-            <a href="https://www.youtube.com/watch?v=R5LCmnSLwwU" target="_blank" class="portfolio-video">
-                <img src="https://img.youtube.com/vi/R5LCmnSLwwU/hqdefault.jpg" alt="Daniela Thumbnail" loading="lazy">
-            </a>
-            <div class="portfolio-info">
-                <div class="creator-info" style="margin-bottom: 15px;">
-                    <img src="Daniela.jpg" alt="Daniela Logo" class="creator-logo" style="width: 55px; height: 55px; border: 2px solid rgba(0, 217, 255, 0.4);">
-                    <div class="creator-details">
-                        <div class="creator-name" style="font-size: 1.3rem; color: #00d9ff; font-weight: 700; margin-bottom: 3px;">Daniela</div>
-                        <div class="creator-subscribers" style="font-size: 1rem; color: #ffffff; font-weight: 600;">286K Subscribers</div>
+            <div class="portfolio-item">
+                <a href="https://www.youtube.com/watch?v=X2-vch4Ae_8" target="_blank" class="portfolio-video">
+                    <img src="https://img.youtube.com/vi/X2-vch4Ae_8/hqdefault.jpg" alt="Ayeyahzee Thumbnail" loading="lazy">
+                </a>
+                <div class="portfolio-info">
+                    <div class="creator-info">
+                        <img src="ayeyahzee.jpg" alt="AyeYahZee Logo" class="creator-logo">
+                        <div class="creator-details">
+                            <div class="creator-name">AyeYahZee</div>
+                            <div class="creator-subscribers">2.08M Subscribers</div>
+                        </div>
                     </div>
+                    <p>Zyro's super supportive he literally helped me bring my dead views back thanks a lot bro 😭</p>
                 </div>
-                <p style="font-style: italic; margin: 0; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7;">I've been working with Zyro for the past 3 months and I've never had any issues they're super responsive and fully supportive. I'd definitely recommend Zyro :)))</p>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.youtube.com/watch?v=RACl1AG_rU0" target="_blank" class="portfolio-video">
+                    <img src="https://img.youtube.com/vi/RACl1AG_rU0/hqdefault.jpg" alt="Valekis Thumbnail" loading="lazy">
+                </a>
+                <div class="portfolio-info">
+                    <div class="creator-info">
+                        <img src="Valekis.jpg" alt="Valekis Logo" class="creator-logo">
+                        <div class="creator-details">
+                            <div class="creator-name">Valekis</div>
+                            <div class="creator-subscribers">562K Subscribers</div>
+                        </div>
+                    </div>
+                    <p>Bro this intro is amazing.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.youtube.com/watch?v=R5LCmnSLwwU" target="_blank" class="portfolio-video">
+                    <img src="https://img.youtube.com/vi/R5LCmnSLwwU/hqdefault.jpg" alt="Daniela Thumbnail" loading="lazy">
+                </a>
+                <div class="portfolio-info">
+                    <div class="creator-info">
+                        <img src="Daniela.jpg" alt="Daniela Logo" class="creator-logo">
+                        <div class="creator-details">
+                            <div class="creator-name">Daniela</div>
+                            <div class="creator-subscribers">286K Subscribers</div>
+                        </div>
+                    </div>
+                    <p>I've been working with Zyro for the past 3 months and I've never had any issues they're super responsive and fully supportive. I'd definitely recommend Zyro :)))</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
     <section class="stats-section">
         <div class="section-header">
             <h2 class="section-title">Our Impact</h2>
@@ -1270,26 +1454,6 @@
             <div class="stat-box hologram-effect">
                 <div class="stat-number">95%</div>
                 <div class="stat-label">Client Satisfaction</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="video-section" id="video">
-        <div class="section-header">
-            <h2 class="section-title">Our Work Process</h2>
-            <p class="section-subtitle">See how we transform raw footage into engaging content</p>
-        </div>
-        <div class="video-container">
-            <div class="video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/Yy6VQisd9Ew?autoplay=1&mute=1" 
-                    allow="autoplay; encrypted-media" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <div class="video-caption">
-                <h3>Behind The Scenes</h3>
-                <div class="typewriter-text" id="typewriterText"></div>
             </div>
         </div>
     </section>
@@ -1423,36 +1587,6 @@
         initParticles();
         animateParticles();
 
-        const matrixCanvas = document.getElementById('matrixRain');
-        const matrixCtx = matrixCanvas.getContext('2d');
-        matrixCanvas.width = window.innerWidth;
-        matrixCanvas.height = window.innerHeight;
-        const matrixChars = '01アイウエオカキクケコサシスセソタチツテト';
-        const fontSize = 14;
-        const columns = matrixCanvas.width / fontSize;
-        const drops = [];
-
-        for (let i = 0; i < columns; i++) {
-            drops[i] = Math.random() * -100;
-        }
-
-        function drawMatrix() {
-            matrixCtx.fillStyle = 'rgba(5, 5, 16, 0.05)';
-            matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-            matrixCtx.fillStyle = '#b47cff';
-            matrixCtx.font = fontSize + 'px monospace';
-            for (let i = 0; i < drops.length; i++) {
-                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
-                matrixCtx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(drawMatrix, 50);
-
         const cursor = document.querySelector('.cursor');
         const cursorFollower = document.querySelector('.cursor-follower');
         let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0, followerX = 0, followerY = 0;
@@ -1544,22 +1678,6 @@
 
         setTimeout(typeWriter, 1200);
 
-        const typewriterText = document.getElementById('typewriterText');
-        const captionText = "At Zyro Visuals, we believe every video tells a story. Our process begins with understanding your vision and style. We carefully analyze your footage, identify key moments, and craft a narrative that resonates with your audience. Using industry-leading tools and techniques, we transform raw gameplay into engaging content that captures attention and drives views. From dynamic transitions to custom effects, every element is meticulously crafted to enhance your content while staying true to your unique brand identity.";
-        let captionIndex = 0;
-
-        function typeWriterCaption() {
-            if (captionIndex < captionText.length) {
-                typewriterText.innerHTML = captionText.substring(0, captionIndex + 1) + '<span class="typewriter-cursor"></span>';
-                captionIndex++;
-                setTimeout(typeWriterCaption, 30);
-            } else {
-                typewriterText.innerHTML = captionText + '<span class="typewriter-cursor"></span>';
-            }
-        }
-
-        setTimeout(typeWriterCaption, 2000);
-
         const observerOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -50px 0px'
@@ -1615,8 +1733,6 @@
         window.addEventListener('resize', () => {
             particlesCanvas.width = window.innerWidth;
             particlesCanvas.height = window.innerHeight;
-            matrixCanvas.width = window.innerWidth;
-            matrixCanvas.height = window.innerHeight;
         });
     </script>
 </body>
