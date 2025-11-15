@@ -1180,6 +1180,7 @@
         .intro-text h2 { 
             font-size: 2.2rem; 
         }
+        
     }
 </style>
 </head>
@@ -1288,61 +1289,89 @@
                 </div>
             </div>
 
-            <div class="marquee-container">
-                <div class="marquee-track">
-                    <div class="marquee-item">
-                        <img src="waffy.jpg" alt="Waffy">
-                        <div class="marquee-item-name">Waffy</div>
-                        <div class="marquee-item-subs">2.25K Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="snappy.jpg" alt="Snappy">
-                        <div class="marquee-item-name">Snappy</div>
-                        <div class="marquee-item-subs">184K Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="ayeyahzee.jpg" alt="AyeYahZee">
-                        <div class="marquee-item-name">AyeYahZee</div>
-                        <div class="marquee-item-subs">2.08M Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="Daniela.jpg" alt="Daniela">
-                        <div class="marquee-item-name">Daniela</div>
-                        <div class="marquee-item-subs">286K Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="snappy.jpg" alt="Valekis">
-                        <div class="marquee-item-name">Valekis</div>
-                        <div class="marquee-item-subs">562K Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="waffy.jpg" alt="Waffy">
-                        <div class="marquee-item-name">Waffy</div>
-                        <div class="marquee-item-subs">2.25K Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="snappy.jpg" alt="Snappy">
-                        <div class="marquee-item-name">Snappy</div>
-                        <div class="marquee-item-subs">184K Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="ayeyahzee.jpg" alt="AyeYahZee">
-                        <div class="marquee-item-name">AyeYahZee</div>
-                        <div class="marquee-item-subs">2.08M Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="Daniela.jpg" alt="Daniela">
-                        <div class="marquee-item-name">Daniela</div>
-                        <div class="marquee-item-subs">286K Subscribers</div>
-                    </div>
-                    <div class="marquee-item">
-                        <img src="Valekis.jpg" alt="Valekis">
-                        <div class="marquee-item-name">Valekis</div>
-                        <div class="marquee-item-subs">562K Subscribers</div>
-                    </div>
-                </div>
-            </div>
+            <div class="marquee-container" style="position: relative; overflow: hidden;">
+
+    <!-- LEFT NEON GLOW -->
+    <div style="
+        position: absolute;
+        top: 0;
+        left: -180px;
+        width: 380px;
+        height: 100%;
+        background: radial-gradient(circle at left, rgba(0, 217, 255, 0.25), transparent 70%);
+        filter: blur(70px);
+        pointer-events: none;
+        z-index: 0;
+    "></div>
+
+    <!-- RIGHT NEON GLOW -->
+    <div style="
+        position: absolute;
+        top: 0;
+        right: -180px;
+        width: 380px;
+        height: 100%;
+        background: radial-gradient(circle at right, rgba(180, 124, 255, 0.25), transparent 70%);
+        filter: blur(70px);
+        pointer-events: none;
+        z-index: 0;
+    "></div>
+
+    <div class="marquee-track" style="position: relative; z-index: 1;">
+        <div class="marquee-item">
+            <img src="waffy.jpg" alt="Waffy">
+            <div class="marquee-item-name">Waffy</div>
+            <div class="marquee-item-subs">2.25K Subscribers</div>
         </div>
+        <div class="marquee-item">
+            <img src="snappy.jpg" alt="Snappy">
+            <div class="marquee-item-name">Snappy</div>
+            <div class="marquee-item-subs">184K Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="ayeyahzee.jpg" alt="AyeYahZee">
+            <div class="marquee-item-name">AyeYahZee</div>
+            <div class="marquee-item-subs">2.08M Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="Daniela.jpg" alt="Daniela">
+            <div class="marquee-item-name">Daniela</div>
+            <div class="marquee-item-subs">286K Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="snappy.jpg" alt="Valekis">
+            <div class="marquee-item-name">Valekis</div>
+            <div class="marquee-item-subs">562K Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="waffy.jpg" alt="Waffy">
+            <div class="marquee-item-name">Waffy</div>
+            <div class="marquee-item-subs">2.25K Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="snappy.jpg" alt="Snappy">
+            <div class="marquee-item-name">Snappy</div>
+            <div class="marquee-item-subs">184K Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="ayeyahzee.jpg" alt="AyeYahZee">
+            <div class="marquee-item-name">AyeYahZee</div>
+            <div class="marquee-item-subs">2.08M Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="Daniela.jpg" alt="Daniela">
+            <div class="marquee-item-name">Daniela</div>
+            <div class="marquee-item-subs">286K Subscribers</div>
+        </div>
+        <div class="marquee-item">
+            <img src="Valekis.jpg" alt="Valekis">
+            <div class="marquee-item-name">Valekis</div>
+            <div class="marquee-item-subs">562K Subscribers</div>
+        </div>
+    </div>
+
+</div>
+
     </section>
 
     <section class="portfolio" id="portfolio">
