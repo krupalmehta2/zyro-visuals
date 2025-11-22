@@ -1174,9 +1174,7 @@
     </style>
 </head>
 <body>
-    <canvas id="particles-canvas"></canvas>
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+   
     <div class="progress-bar" id="progressBar"></div>
 
     <nav class="header-nav" id="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 40px;">
@@ -1274,24 +1272,25 @@
         z-index:5; letter-spacing:1px; 
     ">Shorts Content</span>
 
-    <div style="
+<div style="
         width:100%;
-        height:200%;                 /* ↓ 50% reduced height */
+        height:200%;
         overflow:hidden; 
         border-radius:20px;
         border:2px solid rgba(180,124,255,0.35);
         box-shadow:0 10px 30px rgba(0,0,0,0.5);
     ">
-        <iframe 
-            src="https://www.youtube.com/embed/Yy6VQisd9Ew?mute=1"
-            allow="autoplay; encrypted-media"
-            style="
-                width:100%; 
-                height:100%;     /* ↓ Fills the new 50% parent */
-                border:none;
-            ">
-        </iframe>
-    </div>
+    <iframe 
+        src="https://www.youtube.com/embed/Yy6VQisd9Ew?autoplay=1&mute=1&playsinline=1"
+        allow="autoplay; encrypted-media"
+        style="
+            width:100%; 
+            height:100%;
+            border:none;
+        ">
+    </iframe>
+</div>
+
 
 </div>
 
@@ -1474,93 +1473,147 @@
 
 
 
-    <section class="portfolio" id="portfolio">
-        <div class="section-header">
-            <h2 class="section-title">Portfolio</h2>
-            <p class="section-subtitle">Check out some of my best work</p>
-        </div>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <a href="https://www.youtube.com/watch?v=frgVAY6kWJA" target="_blank" class="portfolio-video">
-                    <img src="https://img.youtube.com/vi/frgVAY6kWJA/hqdefault.jpg" alt="Waffy Thumbnail" loading="lazy">
-                </a>
-                <div class="portfolio-info">
-                    <div class="creator-info">
-                        <img src="waffy.jpg" alt="Waffy Logo" class="creator-logo">
-                        <div class="creator-details">
-                            <div class="creator-name">Waffy</div>
-                            <div class="creator-subscribers">2.25K Subscribers</div>
-                        </div>
-                    </div>
-                    <p>This turned out way better than I imagined! Great work Zyro</p>
-                </div>
+<section class="portfolio" id="portfolio">
+    <div class="section-header">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-subtitle">Check out some of my best work</p>
+    </div>
+
+    <div class="portfolio-grid">
+
+        <!-- ITEM 1 -->
+        <div class="portfolio-item">
+
+            <div class="portfolio-video" 
+                style="aspect-ratio:16/9; overflow:hidden; border-radius:20px; border:2px solid rgba(0,0,0,0.25);">
+                
+                <iframe 
+                    src="https://www.youtube.com/embed/frgVAY6kWJA?autoplay=1&mute=1&playsinline=1&rel=0&controls=1&modestbranding=1"
+                    style="width:100%; height:100%; border:none;"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
             </div>
 
-            <div class="portfolio-item">
-                <a href="https://www.youtube.com/watch?v=sdHAfffZzsw" target="_blank" class="portfolio-video">
-                    <img src="https://img.youtube.com/vi/sdHAfffZzsw/hqdefault.jpg" alt="Snappy Thumbnail" loading="lazy">
-                </a>
-                <div class="portfolio-info">
-                    <div class="creator-info">
-                        <img src="snappy.jpg" alt="Snappy Logo" class="creator-logo">
-                        <div class="creator-details">
-                            <div class="creator-name">Snappy</div>
-                            <div class="creator-subscribers">184K Subscribers</div>
-                        </div>
+            <div class="portfolio-info">
+                <div class="creator-info">
+                    <img src="waffy.jpg" alt="Waffy Logo" class="creator-logo">
+                    <div class="creator-details">
+                        <div class="creator-name">Waffy</div>
+                        <div class="creator-subscribers">2.25K Subscribers</div>
                     </div>
-                    <p>Man this edit turned out so good!! You seriously make it too easy to work with you.</p>
                 </div>
-            </div>
-
-            <div class="portfolio-item">
-                <a href="https://www.youtube.com/watch?v=X2-vch4Ae_8" target="_blank" class="portfolio-video">
-                    <img src="https://img.youtube.com/vi/X2-vch4Ae_8/hqdefault.jpg" alt="Ayeyahzee Thumbnail" loading="lazy">
-                </a>
-                <div class="portfolio-info">
-                    <div class="creator-info">
-                        <img src="ayeyahzee.jpg" alt="AyeYahZee Logo" class="creator-logo">
-                        <div class="creator-details">
-                            <div class="creator-name">AyeYahZee</div>
-                            <div class="creator-subscribers">2.08M Subscribers</div>
-                        </div>
-                    </div>
-                    <p>Zyro's super supportive he literally helped me bring my dead views back thanks a lot bro 😭</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <a href="https://www.youtube.com/watch?v=RACl1AG_rU0" target="_blank" class="portfolio-video">
-                    <img src="https://img.youtube.com/vi/RACl1AG_rU0/hqdefault.jpg" alt="Valekis Thumbnail" loading="lazy">
-                </a>
-                <div class="portfolio-info">
-                    <div class="creator-info">
-                        <img src="Valekis.jpg" alt="Valekis Logo" class="creator-logo">
-                        <div class="creator-details">
-                            <div class="creator-name">Valekis</div>
-                            <div class="creator-subscribers">562K Subscribers</div>
-                        </div>
-                    </div>
-                    <p>Bro this intro is amazing.</p>
-                </div>
-            </div>
-
-            <div class="portfolio-item">
-                <a href="https://www.youtube.com/watch?v=R5LCmnSLwwU" target="_blank" class="portfolio-video">
-                    <img src="https://img.youtube.com/vi/R5LCmnSLwwU/hqdefault.jpg" alt="Daniela Thumbnail" loading="lazy">
-                </a>
-                <div class="portfolio-info">
-                    <div class="creator-info">
-                        <img src="Daniela.jpg" alt="Daniela Logo" class="creator-logo">
-                        <div class="creator-details">
-                            <div class="creator-name">Daniela</div>
-                            <div class="creator-subscribers">286K Subscribers</div>
-                        </div>
-                    </div>
-                    <p>I've been working with Zyro for the past 3 months and I've never had any issues they're super responsive and fully supportive. I'd definitely recommend Zyro :)))</p>
-                </div>
+                <p>This turned out way better than I imagined! Great work Zyro</p>
             </div>
         </div>
-    </section>
+
+        <!-- ITEM 2 -->
+        <div class="portfolio-item">
+
+            <div class="portfolio-video" 
+                style="aspect-ratio:16/9; overflow:hidden; border-radius:20px; border:2px solid rgba(0,0,0,0.25);">
+                
+                <iframe 
+                    src="https://www.youtube.com/embed/sdHAfffZzsw?autoplay=1&mute=1&playsinline=1&rel=0&controls=1&modestbranding=1"
+                    style="width:100%; height:100%; border:none;"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="portfolio-info">
+                <div class="creator-info">
+                    <img src="snappy.jpg" alt="Snappy Logo" class="creator-logo">
+                    <div class="creator-details">
+                        <div class="creator-name">Snappy</div>
+                        <div class="creator-subscribers">184K Subscribers</div>
+                    </div>
+                </div>
+                <p>Man this edit turned out so good!! You seriously make it too easy to work with you.</p>
+            </div>
+        </div>
+
+        <!-- ITEM 3 -->
+        <div class="portfolio-item">
+
+            <div class="portfolio-video" 
+                style="aspect-ratio:16/9; overflow:hidden; border-radius:20px; border:2px solid rgba(0,0,0,0.25);">
+
+                <iframe 
+                    src="https://www.youtube.com/embed/X2-vch4Ae_8?autoplay=1&mute=1&playsinline=1&rel=0&controls=1&modestbranding=1"
+                    style="width:100%; height:100%; border:none;"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="portfolio-info">
+                <div class="creator-info">
+                    <img src="ayeyahzee.jpg" alt="AyeYahZee Logo" class="creator-logo">
+                    <div class="creator-details">
+                        <div class="creator-name">AyeYahZee</div>
+                        <div class="creator-subscribers">2.08M Subscribers</div>
+                    </div>
+                </div>
+                <p>Zyro's super supportive he literally helped me bring my dead views back thanks a lot bro 😭</p>
+            </div>
+        </div>
+
+        <!-- ITEM 4 -->
+        <div class="portfolio-item">
+
+            <div class="portfolio-video" 
+                style="aspect-ratio:16/9; overflow:hidden; border-radius:20px; border:2px solid rgba(0,0,0,0.25);">
+
+                <iframe 
+                    src="https://www.youtube.com/embed/RACl1AG_rU0?autoplay=1&mute=1&playsinline=1&rel=0&controls=1&modestbranding=1"
+                    style="width:100%; height:100%; border:none;"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="portfolio-info">
+                <div class="creator-info">
+                    <img src="Valekis.jpg" alt="Valekis Logo" class="creator-logo">
+                    <div class="creator-details">
+                        <div class="creator-name">Valekis</div>
+                        <div class="creator-subscribers">562K Subscribers</div>
+                    </div>
+                </div>
+                <p>Bro this intro is amazing.</p>
+            </div>
+        </div>
+
+        <!-- ITEM 5 -->
+        <div class="portfolio-item">
+
+            <div class="portfolio-video" 
+                style="aspect-ratio:16/9; overflow:hidden; border-radius:20px; border:2px solid rgba(0,0,0,0.25);">
+
+                <iframe 
+                    src="https://www.youtube.com/embed/R5LCmnSLwwU?autoplay=1&mute=1&playsinline=1&rel=0&controls=1&modestbranding=1"
+                    style="width:100%; height:100%; border:none;"
+                    allow="autoplay; encrypted-media"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="portfolio-info">
+                <div class="creator-info">
+                    <img src="Daniela.jpg" alt="Daniela Logo" class="creator-logo">
+                    <div class="creator-details">
+                        <div class="creator-name">Daniela</div>
+                        <div class="creator-subscribers">286K Subscribers</div>
+                    </div>
+                </div>
+                <p>I've been working with Zyro for the past 3 months and I've never had any issues...</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 
     <section class="stats-section">
         <div class="section-header">
